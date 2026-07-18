@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Anto Manuel | 3D Portfolio - Biosensors & MEMS Researcher</title>
+  <meta name="description" content="Research Portfolio of Anto Manuel - Assistant Professor & Ph.D. Researcher at IIT Goa specializing in Biosensors, MEMS, Glassy Carbon, and IoT-enabled embedded systems.">
+  <link rel="stylesheet" href="index.css">
+  <!-- Lucide Icons for premium modern iconography -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Tech Grid Background overlay -->
+  <div class="tech-grid"></div>
+
+  <!-- 3D Canvas Background -->
+  <div id="canvas-container"></div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="container">
+      <a href="#" class="logo">
+        <div class="logo-dot"></div>
+        ANTO<span>MANUEL</span>
+      </a>
+      <nav id="nav-menu">
+        <a href="#about" class="active">About</a>
+        <a href="#education">Education</a>
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="hamburger" id="hamburger-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i data-lucide="graduation-cap"></i> Ph.D. Researcher @ IIT Goa
+        </div>
+        <h1 class="hero-title">Engineering the Future of Biosensors & MEMS</h1>
+        <p class="hero-subtitle">Assistant Professor, academic researcher, and product developer with 10+ years of expertise in nanotechnology, embedded systems, and biomedical instrumentation.</p>
+        <div class="cta-group">
+          <a href="#research" class="btn btn-primary">Explore Research <i data-lucide="arrow-right"></i></a>
+          <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="portrait-wrapper">
+          <div class="portrait-inner">
+            <img src="biosensor_avatar.jpg" alt="Anto Manuel - Biosensor Research Visual">
+          </div>
+          <div class="orbital-ring">
+            <div class="orbital-node orbital-node-1"></div>
+            <div class="orbital-node orbital-node-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Stats Grid -->
+  <div class="container">
+    <div class="quick-stats glass-card">
+      <div class="stat-item">
+        <div class="stat-num" data-val="10">10+</div>
+        <div class="stat-lbl">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-val="15">15+</div>
+        <div class="stat-lbl">Publications & Books</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-val="25">25+</div>
+        <div class="stat-lbl">R&D Projects</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-val="4">4</div>
+        <div class="stat-lbl">Best Paper Awards</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="gradient-title">Professional Summary</h2>
+        <p>A multi-disciplinary researcher connecting materials science with electronics</p>
+      </div>
+      <div class="about-grid">
+        <div class="profile-text">
+          <p>I am an experienced Assistant Professor, academic administrator, and engineering product designer. Currently, I am pursuing my Ph.D. at the <strong>Indian Institute of Technology Goa (IIT Goa)</strong>, focusing on state-of-the-art biosensor development utilizing MEMS (Micro-Electro-Mechanical Systems) and nanomaterials.</p>
+          <p>My work sits at the intersection of embedded hardware engineering, biomedical systems, and nanotechnology. Over the last decade, I have successfully developed various real-time systems, coordinated academic accreditations (NBA, NAAC), conceptualized heritage museums, and guided award-winning student projects.</p>
+          <div class="profile-highlights">
+            <div class="highlight-box">
+              <h4>Core Research Focus</h4>
+              <p>Glassy carbon electrode sensors, carbon-MEMS photolithography, and microfluidics.</p>
+            </div>
+            <div class="highlight-box">
+              <h4>Product Development</h4>
+              <p>From schematic capture and PCB design to firmware and field-testing.</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card">
+          <h3 style="margin-bottom: 1.5rem;"><i data-lucide="award" style="color: var(--color-sky); vertical-align: middle; margin-right: 0.5rem;"></i>Key Accomplishments</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 1.25rem;">
+            <li style="display: flex; gap: 1rem;">
+              <i data-lucide="award" style="color: #e9d8a6; flex-shrink: 0;"></i>
+              <div>
+                <strong>Best Paper Awards</strong>
+                <p style="font-size: 0.9rem; color: var(--text-muted)">Three awards from IEEE & Springer conferences (2025, 2026) for biosensor & smart mask innovations.</p>
+              </div>
+            </li>
+            <li style="display: flex; gap: 1rem;">
+              <i data-lucide="users" style="color: var(--color-sky); flex-shrink: 0;"></i>
+              <div>
+                <strong>Academic Leadership</strong>
+                <p style="font-size: 0.9rem; color: var(--text-muted)">Head of Biomedical Engineering Dept. (RIET), PG coordinator (M.Tech VLSI & Embedded Systems), and NSS Officer.</p>
+              </div>
+            </li>
+            <li style="display: flex; gap: 1rem;">
+              <i data-lucide="globe" style="color: var(--color-peacock-light); flex-shrink: 0;"></i>
+              <div>
+                <strong>Social Impact Coordinator</strong>
+                <p style="font-size: 0.9rem; color: var(--text-muted)">Coordinated construction of 8 houses for families in need and supervised 80+ social service campaigns.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" style="background: rgba(255,255,255,0.01);">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="gradient-title">Education & Academic Journey</h2>
+        <p>Strong educational background in VLSI, Embedded Systems, and Nanotechnology</p>
+      </div>
+      <div class="education-grid">
+        <!-- Ph.D. -->
+        <div class="edu-card glass-card">
+          <div class="edu-icon-wrap">
+            <div class="edu-icon"><i data-lucide="microscope"></i></div>
+            <div class="edu-line"></div>
+          </div>
+          <div class="edu-info">
+            <div class="edu-meta">
+              <span class="edu-date">2021 - Present (Continuing)</span>
+              <span class="edu-grade">Ph.D. Scholar</span>
+            </div>
+            <h3>Doctor of Philosophy (Ph.D.) in Biosensors & MEMS</h3>
+            <p class="edu-inst">Indian Institute of Technology Goa (IIT Goa), India</p>
+            <p class="edu-desc">Research area covers glassy carbon microelectrodes, biosensor microfabrication using photolithography, COMSOL Multiphysics simulations, MEMS technology, and IoT integration for chemical/disease sensing.</p>
+            <div class="edu-highlights">
+              <span class="edu-tag">Biosensors</span>
+              <span class="edu-tag">Carbon-MEMS</span>
+              <span class="edu-tag">Photolithography</span>
+              <span class="edu-tag">COMSOL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- M.Tech -->
+        <div class="edu-card glass-card">
+          <div class="edu-icon-wrap">
+            <div class="edu-icon"><i data-lucide="cpu"></i></div>
+            <div class="edu-line"></div>
+          </div>
+          <div class="edu-info">
+            <div class="edu-meta">
+              <span class="edu-date">Aug 2013 - Dec 2015</span>
+              <span class="edu-grade">8.86 CGPA (University 3rd Rank)</span>
+            </div>
+            <h3>M.Tech in VLSI & Embedded Systems</h3>
+            <p class="edu-inst">St. Joseph's College of Engineering & Technology, M.G. University, Kerala</p>
+            <p class="edu-desc">Focused on analog/digital IC design, embedded processors, FPGA, VHDL programming, and real-time operating systems. Completed with zero backlogs/history of arrears.</p>
+            <div class="edu-highlights">
+              <span class="edu-tag">VLSI Design</span>
+              <span class="edu-tag">Embedded Systems</span>
+              <span class="edu-tag">FPGA</span>
+              <span class="edu-tag">VHDL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- B.E -->
+        <div class="edu-card glass-card">
+          <div class="edu-icon-wrap">
+            <div class="edu-icon"><i data-lucide="binary"></i></div>
+          </div>
+          <div class="edu-info">
+            <div class="edu-meta">
+              <span class="edu-date">Aug 2008 - May 2012</span>
+              <span class="edu-grade">7.92 CGPA</span>
+            </div>
+            <h3>B.E. in Electronics & Communication Engineering</h3>
+            <p class="edu-inst">Maha Barathi Engineering College, Anna University, Chennai</p>
+            <p class="edu-desc">Acquired strong foundational knowledge in analog electronic circuits, signal processing, electromagnetic fields, and communication theory.</p>
+            <div class="edu-highlights">
+              <span class="edu-tag">Electronics</span>
+              <span class="edu-tag">Signal Processing</span>
+              <span class="edu-tag">Communication</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research & Publications Section -->
+  <section id="research">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="gradient-title">Research & Publications</h2>
+        <p>Peer-reviewed books, book chapters, journals, and IEEE conference publications</p>
+      </div>
+      
+      <div class="tab-container">
+        <div class="tab-buttons">
+          <button class="tab-btn active" onclick="switchTab(event, 'journals')">Journals & Books</button>
+          <button class="tab-btn" onclick="switchTab(event, 'conferences')">IEEE/Springer Conferences</button>
+        </div>
+
+        <!-- Tab 1: Journals & Books -->
+        <div id="journals" class="tab-content active">
+          <div class="publications-list">
+            <div class="pub-card glass-card">
+              <div class="pub-header">
+                <span class="pub-type">Journal Article</span>
+                <span class="pub-year">2025</span>
+              </div>
+              <h3 class="pub-title">"Carbon-mems derived glassy carbon sensor for acetone sensing"</h3>
+              <p class="pub-authors">Anto Manuel, Bidhan Pramanik</p>
+              <p class="pub-venue">Microsystem Technologies, Springer. Vol 31, pp. 3579–3592.</p>
+              <a href="https://doi.org/10.1007/s00542-025-05914-0" target="_blank" class="pub-link">Read DOI Article <i data-lucide="external-link"></i></a>
+            </div>
+
+            <div class="pub-card glass-card">
+              <div class="pub-header">
+                <span class="pub-type">Book Chapter</span>
+                <span class="pub-year">2026</span>
+              </div>
+              <h3 class="pub-title">"Microelectronic Devices" (Chapter 2) in Book: "Microelectronics: Simulations, Modeling and Applications"</h3>
+              <p class="pub-authors">Anto Manuel, Bidhan Pramanic</p>
+              <p class="pub-venue">Wiley & Scrivener Publishing.</p>
+              <a href="https://doi.org/10.1002/9781394336487.ch2" target="_blank" class="pub-link">Wiley Reference <i data-lucide="external-link"></i></a>
+            </div>
+
+            <div class="pub-card glass-card">
+              <div class="pub-header">
+                <span class="pub-type">Book Chapter</span>
+                <span class="pub-year">2023</span>
+              </div>
+              <h3 class="pub-title">"IoT-enabled biosensors for cancer and disease detection" (Chapter 4) in Book: "Internet of Things in Biomedical Sciences: Challenges and Applications"</h3>
+              <p class="pub-authors">Anto Manuel, Bidhan Pramanic</p>
+              <p class="pub-venue">IOP Publishing, Bristol, UK.</p>
+              <a href="https://doi.org/10.1088/978-0-7503-5311-3" target="_blank" class="pub-link">IOP Science Link <i data-lucide="external-link"></i></a>
+            </div>
+
+            <div class="pub-card glass-card">
+              <div class="pub-header">
+                <span class="pub-type">Journal Article</span>
+                <span class="pub-year">2023</span>
+              </div>
+              <h3 class="pub-title">"Electronic based intravenous monitoring ceasing and alerting system"</h3>
+              <p class="pub-authors">Anto Manuel, Dana Fathima, Maria Shaju, Elias K Philip, Suryadeep P, Dr. Arun P</p>
+              <p class="pub-venue">SJCET Journal of Engineering and Management, Vol 16, No. 1, pp. 42-53.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Conferences -->
+        <div id="conferences" class="tab-content">
+          <div class="publications-list">
+            <div class="pub-card glass-card" style="border-left-color: #e9d8a6;">
+              <div class="pub-header">
+                <span class="pub-type" style="background: rgba(233, 216, 166, 0.1); color: #e9d8a6;">Conference (Best Paper Award)</span>
+                <span class="pub-year">Jan 2026</span>
+              </div>
+              <h3 class="pub-title">"Nanocomposite Coated Carbon-MEMS-Derived Glassy Carbon Electrode for Acetone Sensing"</h3>
+              <p class="pub-authors">Anto Manuel, Madukumar S, Bidhan Pramank</p>
+              <p class="pub-venue">6th International Conference on Micro/Nanoelectronics Devices, Circuits, & System, NIT Silchar.</p>
+            </div>
+
+            <div class="pub-card glass-card" style="border-left-color: #e9d8a6;">
+              <div class="pub-header">
+                <span class="pub-type" style="background: rgba(233, 216, 166, 0.1); color: #e9d8a6;">Conference (Best Paper Award)</span>
+                <span class="pub-year">2025</span>
+              </div>
+              <h3 class="pub-title">"A study of sensor response of biosensor for acetone gas based on variable geometry of glassy carbon IDE, analyzed in COMSOL Multiphysics software"</h3>
+              <p class="pub-authors">Anto Manuel, Madukumar S, Bidhan Pramank</p>
+              <p class="pub-venue">6th International Conference on Control, Communication and Computing (ICCC), Thiruvananthapuram.</p>
+              <a href="https://doi.org/10.1109/ICCC64910.2025.11077269" target="_blank" class="pub-link">Read Conference Paper <i data-lucide="external-link"></i></a>
+            </div>
+
+            <div class="pub-card glass-card">
+              <div class="pub-header">
+                <span class="pub-type">IEEE Conference</span>
+                <span class="pub-year">Jan 2025</span>
+              </div>
+              <h3 class="pub-title">"Glassy Carbon based Acetone Detector: A Sensor Developed using Carbon-MEMS Technology"</h3>
+              <p class="pub-authors">Anto Manuel, Bidhan Pramank</p>
+              <p class="pub-venue">5th International Conference on Micro/Nanoelectronics Devices, Circuits, & System, NIT Silchar.</p>
+            </div>
+
+            <div class="pub-card glass-card">
+              <div class="pub-header">
+                <span class="pub-type">IEEE Conference</span>
+                <span class="pub-year">2024</span>
+              </div>
+              <h3 class="pub-title">"Elderly Fall Detection System Using mm-Wave Radar Sensor"</h3>
+              <p class="pub-authors">J. Joy, A. T. John, A. Anna Alex, A. S. Nair, P. R. Sreesh, Anto Manuel</p>
+              <p class="pub-venue">Fourth International Conference on Advances in Electrical, Computing, Communication and Sustainable Technologies (ICAECT).</p>
+              <a href="https://doi.org/10.1109/ICAECT60202.2024.10468881" target="_blank" class="pub-link">Read Conference Paper <i data-lucide="external-link"></i></a>
+            </div>
+
+            <div class="pub-card glass-card">
+              <div class="pub-header">
+                <span class="pub-type">IEEE Conference</span>
+                <span class="pub-year">2023</span>
+              </div>
+              <h3 class="pub-title">"A Machine Learning Strategy to Detect COVID-19 by Inspecting the Statistical Significance of Sound Samples"</h3>
+              <p class="pub-authors">Anto Manuel, Arun P, Sreesh P R</p>
+              <p class="pub-venue">Annual International Conference on Emerging Research Areas: International Conference on Intelligent Systems (AICERA/ICIS).</p>
+              <a href="https://doi.org/10.1109/AICERA/ICIS59538.2023.10420233" target="_blank" class="pub-link">Read Conference Paper <i data-lucide="external-link"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Showcase Section -->
+  <section id="projects" style="background: rgba(255,255,255,0.01);">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="gradient-title">Featured Engineering Projects</h2>
+        <p>Selected hardware prototypes, systems integration, and IoT innovations</p>
+      </div>
+
+      <div class="project-filters">
+        <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+        <button class="filter-btn" onclick="filterProjects('iot')">IoT & WSN</button>
+        <button class="filter-btn" onclick="filterProjects('embedded')">Embedded & FPGA</button>
+        <button class="filter-btn" onclick="filterProjects('biomedical')">Biomedical & Sensors</button>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1: PRIDISTER -->
+        <div class="project-card glass-card" data-cat="embedded">
+          <div class="project-icon"><i data-lucide="cloud-lightning"></i></div>
+          <h3>PRIDISTER</h3>
+          <p>An intelligent system designed to predict cloudbursts in high-altitude zones. Awarded a prestigious development grant from the Center for Engineering Research and Development (CERD), Trivandrum.</p>
+          <div class="project-tags">
+            <span class="project-tag">Cloudburst Prediction</span>
+            <span class="project-tag">Embedded IoT</span>
+            <span class="project-tag">Meteorology</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-date">2022</span>
+            <span class="project-award"><i data-lucide="award"></i> CERD Grand & K-DISC</span>
+          </div>
+        </div>
+
+        <!-- Project 2: MEDIGLOVE -->
+        <div class="project-card glass-card" data-cat="biomedical">
+          <div class="project-icon"><i data-lucide="heart-pulse"></i></div>
+          <h3>MEDIGLOVE</h3>
+          <p>A wearable health monitoring glove designed for remote patients. Integrates multi-sensor fusion (pulse, oxygen, temp) sending alerts autonomously via IoT protocols.</p>
+          <div class="project-tags">
+            <span class="project-tag">Wearable Tech</span>
+            <span class="project-tag">Sensors</span>
+            <span class="project-tag">Biomedical</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-date">2021</span>
+            <span class="project-award"><i data-lucide="award"></i> CERD Grant</span>
+          </div>
+        </div>
+
+        <!-- Project 3: AQUALINK -->
+        <div class="project-card glass-card" data-cat="iot">
+          <div class="project-icon"><i data-lucide="droplet"></i></div>
+          <h3>AQUALINK</h3>
+          <p>An IoT-enabled wireless sensor network for industrial water level monitoring, featuring a custom combined UI dashboard and automatic valve controllers.</p>
+          <div class="project-tags">
+            <span class="project-tag">IoT Gateway</span>
+            <span class="project-tag">Wireless Sensors</span>
+            <span class="project-tag">Automation</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-date">2024</span>
+            <span class="project-award">Active Deployment</span>
+          </div>
+        </div>
+
+        <!-- Project 4: Air Guard -->
+        <div class="project-card glass-card" data-cat="biomedical">
+          <div class="project-icon"><i data-lucide="wind"></i></div>
+          <h3>Air Guard</h3>
+          <p>A wearable IoT band tracking Air Quality Index (AQI). Predicts allergen triggers dynamically utilizing a built-in AI interface running on low-power hardware.</p>
+          <div class="project-tags">
+            <span class="project-tag">Edge AI</span>
+            <span class="project-tag">AQI Tracking</span>
+            <span class="project-tag">Wearables</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-date">2024</span>
+            <span class="project-award">Intellectual Property</span>
+          </div>
+        </div>
+
+        <!-- Project 5: SoBot -->
+        <div class="project-card glass-card" data-cat="iot">
+          <div class="project-icon"><i data-lucide="sun"></i></div>
+          <h3>SoBot</h3>
+          <p>A solar-powered beach cleaning robot with autonomous navigation, computer vision detection, and mechanical collectors powered entirely by renewable energy.</p>
+          <div class="project-tags">
+            <span class="project-tag">Robotics</span>
+            <span class="project-tag">Solar Energy</span>
+            <span class="project-tag">Microcontrollers</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-date">2024</span>
+            <span class="project-award">Prototype Complete</span>
+          </div>
+        </div>
+
+        <!-- Project 6: Sky Sentinel -->
+        <div class="project-card glass-card" data-cat="embedded">
+          <div class="project-icon"><i data-lucide="shield-alert"></i></div>
+          <h3>Sky Sentinel</h3>
+          <p>Harnessing artificial intelligence for regional cloudburst forecasting, flood mapping, and warning triggers based on environmental sensors.</p>
+          <div class="project-tags">
+            <span class="project-tag">Machine Learning</span>
+            <span class="project-tag">IoT Nodes</span>
+            <span class="project-tag">Disaster Alert</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-date">2023</span>
+            <span class="project-award">IEEE Publications</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Experience Section -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="gradient-title">Professional Experience</h2>
+        <p>A decade in higher education, institutional leadership, and engineering product design</p>
+      </div>
+
+      <div class="timeline">
+        <!-- Role 1 -->
+        <div class="timeline-item timeline-left">
+          <div class="timeline-card glass-card">
+            <span class="timeline-date">June 2025 - Present</span>
+            <h3>Assistant Professor | HOD | Deputy Controller</h3>
+            <h4>Rajadhani Institute of Engineering and Technology, Kerala</h4>
+            <ul>
+              <li><strong>HOD - Biomedical Engineering:</strong> Heading faculty management, curriculum design, research development, and lab expansion.</li>
+              <li><strong>Deputy Controller of Examinations:</strong> Coordinating autonomous cell processes, secure digital evaluations, and academic quality assurance.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 2 -->
+        <div class="timeline-item timeline-right">
+          <div class="timeline-card glass-card">
+            <span class="timeline-date">March 2016 - May 2025</span>
+            <h3>Assistant Professor in ECE</h3>
+            <h4>St. Joseph's College of Engineering and Technology, Palai</h4>
+            <ul>
+              <li>Lectured on Embedded Systems, Analog/Digital VLSI, Biosensors, and Instrumentation Electronics.</li>
+              <li>Acted as PG Coordinator for M.Tech VLSI and Embedded Systems.</li>
+              <li>Pioneered the setup and launch of the College Heritage Museum.</li>
+              <li>Managed NBA & NAAC accreditation committees for Criterion 4.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 3 -->
+        <div class="timeline-item timeline-left">
+          <div class="timeline-card glass-card">
+            <span class="timeline-date">Dec 2015 - March 2016</span>
+            <h3>Research & Development Engineer</h3>
+            <h4>Simstream Pvt Ltd, India</h4>
+            <ul>
+              <li>Designed and conceptualized customized embedded system boards for industrial electronics.</li>
+              <li>Conducted system prototyping, hardware debugging, and production validation.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 4 -->
+        <div class="timeline-item timeline-right">
+          <div class="timeline-card glass-card">
+            <span class="timeline-date">Aug 2012 - June 2013</span>
+            <h3>Production Engineer</h3>
+            <h4>IPA Pvt Ltd, Bengaluru, India</h4>
+            <ul>
+              <li>Created PLC ladder logic for factory automation lines.</li>
+              <li>Conducted calibration, component testing, and process debugging of control panels.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" style="background: rgba(255,255,255,0.01);">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="gradient-title">Technical Expertise</h2>
+        <p>Specialized capabilities in engineering CAD, programming languages, and hardware</p>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Col 1: CAD & Engineering -->
+        <div class="skill-category glass-card">
+          <h3><i data-lucide="layers"></i> Computer-Aided Engineering</h3>
+          <div class="skills-list">
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">COMSOL Multiphysics (MEMS simulation)</span><span class="skill-percent">90%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">OrCAD & Proteus (Schematic & PCB)</span><span class="skill-percent">95%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="95%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">SOLIDWORKS (3D Mechanical Layout)</span><span class="skill-percent">85%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">MATLAB & LTSpice (Circuit Simulation)</span><span class="skill-percent">90%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Programming & Hardware -->
+        <div class="skill-category glass-card">
+          <h3><i data-lucide="cpu"></i> Programming & Hardware</h3>
+          <div class="skills-list">
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">Embedded C / C++ (STM32, Arduino)</span><span class="skill-percent">95%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="95%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">Hardware Description Languages (VHDL)</span><span class="skill-percent">85%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">FPGA (Spartan 3E, PYNQ Board)</span><span class="skill-percent">80%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">PLC & Ladder Programming</span><span class="skill-percent">85%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="gradient-title">Connect & Collaborate</h2>
+        <p>Get in touch for research partnerships, academic opportunities, or engineering consults</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Let's start a conversation.</h3>
+          <p>Whether you are interested in carbon-MEMS electrode fabrication, biosensing microchips, IoT node designs, or academic workshops, feel free to drop a message or reach out via professional networks.</p>
+          
+          <div class="contact-details">
+            <div class="contact-method">
+              <div class="contact-icon"><i data-lucide="mail"></i></div>
+              <div class="contact-text">
+                <h4>Email</h4>
+                <a href="mailto:antomjp4@gmail.com">antomjp4@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-method">
+              <div class="contact-icon"><i data-lucide="phone"></i></div>
+              <div class="contact-text">
+                <h4>Phone</h4>
+                <a href="tel:+918590024145">+91 85900 24145</a>
+              </div>
+            </div>
+            <div class="contact-method">
+              <div class="contact-icon"><i data-lucide="map-pin"></i></div>
+              <div class="contact-text">
+                <h4>Location</h4>
+                <p>Kerala, India (Ph.D. Scholar at IIT Goa)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="https://linkedin.com/in/anto-manuel-56905464" target="_blank" class="social-btn" aria-label="LinkedIn Profile"><i data-lucide="linkedin"></i></a>
+            <a href="mailto:antomjp4@gmail.com" class="social-btn" aria-label="Email Anto"><i data-lucide="mail"></i></a>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <form id="contact-form" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" class="form-input" placeholder="Collaboration / Inquiry" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" class="form-input" placeholder="Detail your query..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Send Message <i data-lucide="send"></i></button>
+            <div id="form-status-msg" class="form-status"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Dr. Anto Manuel. All rights reserved.</p>
+      <p>Research & Engineering Portfolio | Designed in Sky Blue & Peacock Teal</p>
+    </div>
+  </footer>
+
+  <!-- Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Main Script for animations, tabs, and 3D scene -->
+  <script src="main.js"></script>
+</body>
+</html>
