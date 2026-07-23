@@ -364,3 +364,95 @@ function handleFormSubmit(event) {
     }, 6000);
   }, 1200);
 }
+
+// --- NPTEL CERTIFICATE CAROUSEL & LIGHTBOX MODAL ---
+let currentCertIndex = 0;
+const certSlides = document.querySelectorAll('.carousel-slide');
+const certDots = document.querySelectorAll('.carousel-dot');
+
+function showCertSlide(index) {
+  if (certSlides.length === 0) return;
+  
+  // Wrap index
+  if (index >= certSlides.length) {
+    currentCertIndex = 0;
+  } else if (index < 0) {
+    currentCertIndex = certSlides.length - 1;
+  } else {
+    currentCertIndex = index;
+  }
+  
+  // Update active slide classes
+  certSlides.forEach((slide, idx) => {
+    if (idx === currentCertIndex) {
+      slide.classList.add('active');
+    } else {
+      slide.classList.remove('active');
+    }
+  });
+  
+  // Update active dot classes
+  certDots.forEach((dot, idx) => {
+    if (idx === currentCertIndex) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
+}
+
+// Global functions for HTML onclick handlers
+window.moveCertSlide = function(direction) {
+  showCertSlide(currentCertIndex + direction);
+};
+
+window.setCertSlide = function(index) {
+  showCertSlide(index);
+};
+
+// Lightbox Modal Functions
+const certModal = document.getElementById('cert-modal');
+const certModalImg = document.getElementById('cert-modal-img');
+
+window.openCertModal = function(imgSrc) {
+  if (!certModal || !certModalImg) return;
+  certModalImg.src = imgSrc;
+  certModal.classList.add('open');
+  document.body.style.overflow = 'hidden'; // Disable page scrolling
+};
+
+window.closeCertModal = function() {
+  if (!certModal) return;
+  certModal.classList.remove('open');
+  document.body.style.overflow = ''; // Re-enable page scrolling
+  // Clear src after transition to avoid flicker on next open
+  setTimeout(() => {
+    if (!certModal.classList.contains('open') && certModalImg) {
+      certModalImg.src = '';
+    }
+  }, 300);
+};
+
+// Keyboard listener for modal closing and carousel navigation
+document.addEventListener('keydown', (event) => {
+  if (certModal && certModal.classList.contains('open')) {
+    if (event.key === 'Escape') {
+      closeCertModal();
+    }
+  } else {
+    // Navigate carousel with keyboard if NPTEL section is in viewport
+    const container = document.querySelector('.cert-carousel-container');
+    if (container) {
+      const rect = container.getBoundingClientRect();
+      const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inViewport) {
+        if (event.key === 'ArrowLeft') {
+          moveCertSlide(-1);
+        } else if (event.key === 'ArrowRight') {
+          moveCertSlide(1);
+        }
+      }
+    }
+  }
+});
+
