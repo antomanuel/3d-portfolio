@@ -270,13 +270,13 @@ nav a:hover::after, nav a.active::after {
 
 /* Hero Section */
 .hero {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-top: calc(4.5rem + 120px);
-  padding-bottom: 2rem;
+  padding-top: 3rem;
+  padding-bottom: 4rem;
 }
 
 .hero-grid {
@@ -1562,183 +1562,265 @@ footer a:hover {
   color: #ef4444;
 }
 
-/* Infinite Scrolling Horizontal Timeline Marquee styles */
-.timeline-marquee-container {
-  position: absolute;
-  top: 4.5rem; /* sits right below the fixed header */
-  left: 0;
+/* Photo Timeline Slider Banner Styles */
+.hero-slider-container {
+  margin-top: 4.5rem; /* sits right below the header */
+  position: relative;
   width: 100%;
-  height: 120px;
-  background: rgba(7, 10, 19, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+  height: 420px;
+  background: var(--bg-dark);
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  z-index: 20;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.12);
+  z-index: 10;
 }
 
-/* Gradients to fade out the scrolling list at left/right edges */
-.marquee-fade-left, .marquee-fade-right {
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-slide {
   position: absolute;
   top: 0;
-  bottom: 0;
-  width: 120px;
-  z-index: 5;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.8s ease-in-out;
   pointer-events: none;
 }
-.marquee-fade-left {
+
+.slider-slide.active {
+  opacity: 1;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+/* Slide image wrapper for zoom / pan effect */
+.slide-image-wrapper {
+  position: absolute;
+  top: 0;
   left: 0;
-  background: linear-gradient(to right, var(--bg-dark) 0%, transparent 100%);
-}
-.marquee-fade-right {
-  right: 0;
-  background: linear-gradient(to left, var(--bg-dark) 0%, transparent 100%);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
-.marquee-track {
-  display: flex;
-  width: max-content;
-  align-items: center;
-  animation: marquee-scroll 32s linear infinite;
-}
-
-/* Pause scroll animation on hover */
-.timeline-marquee-container:hover .marquee-track {
-  animation-play-state: paused;
-}
-
-.marquee-content {
-  display: flex;
-  gap: 2rem;
-  padding: 0 1rem;
-}
-
-/* Timeline Cards */
-.timeline-card {
-  display: flex;
-  align-items: center;
-  width: 380px;
-  height: 94px;
-  padding: 8px;
-  background: rgba(13, 20, 38, 0.55);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  gap: 12px;
-  transition: var(--transition);
-  cursor: pointer;
-  user-select: none;
-}
-
-.timeline-card:hover {
-  transform: translateY(-2px) scale(1.02);
-  background: rgba(19, 29, 54, 0.75);
-  border-color: var(--color-sky);
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
-}
-
-.card-img-wrapper {
-  width: 78px;
-  height: 78px;
-  border-radius: 8px;
-  overflow: hidden;
-  flex-shrink: 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.card-img-wrapper img {
+.slide-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1.02);
+  transition: transform 6s ease-out;
 }
 
-.timeline-card:hover .card-img-wrapper img {
-  transform: scale(1.1);
+/* Ken Burns effect: subtle slow zoom on the active slide image */
+.slider-slide.active .slide-image-wrapper img {
+  transform: scale(1.08);
 }
 
-.card-info {
+/* Dark fading gradient overlay on top of slide background for text readability */
+.slide-content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    rgba(7, 10, 19, 0.95) 0%,
+    rgba(7, 10, 19, 0.8) 35%,
+    rgba(7, 10, 19, 0.4) 60%,
+    rgba(7, 10, 19, 0.15) 100%
+  );
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  overflow: hidden;
+  align-items: center;
 }
 
-.card-date {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-sky);
-  background: rgba(56, 189, 248, 0.1);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  padding: 1px 6px;
-  border-radius: 4px;
-  width: fit-content;
-  letter-spacing: 0.05em;
+.slide-content {
+  max-width: 600px;
+  animation: slideTextIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateX(-20px);
 }
 
-.card-title {
-  font-family: var(--font-heading);
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-main);
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.slider-slide.active .slide-content {
+  animation-delay: 0.2s;
 }
 
-.card-desc {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin: 0;
-  line-height: 1.3;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-@keyframes marquee-scroll {
-  0% {
+@keyframes slideTextIn {
+  to {
+    opacity: 1;
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(-50%);
+}
+
+.slide-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-sky);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 0.35rem 0.8rem;
+  border-radius: 50px;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.slide-badge i {
+  width: 14px;
+  height: 14px;
+}
+
+.slide-title {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, var(--color-sky) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.slide-desc {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Slider navigation arrows */
+.slider-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(13, 20, 38, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: var(--transition);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.slider-nav-btn i {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.hero-slider-container:hover .slider-nav-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slider-nav-btn:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: var(--color-sky);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+.slider-nav-btn.prev {
+  left: 2rem;
+}
+.slider-nav-btn.next {
+  right: 2rem;
+}
+
+.slider-nav-btn.prev:hover i {
+  transform: translateX(-2px);
+}
+.slider-nav-btn.next:hover i {
+  transform: translateX(2px);
+}
+
+/* Dot indicators */
+.slider-dots {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 10;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.slider-dot.active {
+  background: var(--color-sky);
+  box-shadow: 0 0 8px var(--color-sky);
+  width: 24px;
+  border-radius: 10px;
+}
+
+/* Responsiveness for Slider */
+@media (max-width: 1024px) {
+  .hero-slider-container {
+    height: 350px;
+  }
+  .slide-title {
+    font-size: 1.75rem;
+  }
+  .slide-desc {
+    font-size: 0.95rem;
   }
 }
 
-/* Adjust timeline marquee banner layout in mobile */
 @media (max-width: 768px) {
-  .timeline-marquee-container {
-    height: 100px;
+  .hero-slider-container {
+    height: 280px;
   }
-  
-  .timeline-card {
-    width: 320px;
-    height: 80px;
-    gap: 10px;
-    padding: 6px;
+  .slide-content-overlay {
+    background: linear-gradient(
+      0deg,
+      rgba(7, 10, 19, 0.95) 0%,
+      rgba(7, 10, 19, 0.8) 50%,
+      rgba(7, 10, 19, 0.5) 100%
+    );
+    align-items: flex-end;
+    padding-bottom: 2.5rem;
   }
-  
-  .card-img-wrapper {
-    width: 66px;
-    height: 66px;
+  .slide-content {
+    max-width: 100%;
+    padding: 0 1rem;
   }
-  
-  .card-title {
+  .slide-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .slide-desc {
     font-size: 0.85rem;
   }
-  
-  .card-desc {
-    font-size: 0.7rem;
-    -webkit-line-clamp: 2;
-  }
-  
-  .marquee-track {
-    animation-duration: 25s; /* speed up slightly on smaller content */
+  .slider-nav-btn {
+    display: none; /* Hide arrows on mobile */
   }
 }
 

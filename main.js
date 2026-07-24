@@ -456,3 +456,70 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+// --- PHOTO TIMELINE SLIDER BANNER JS ---
+let currentSlideIndex = 0;
+let slideInterval;
+const slides = document.querySelectorAll('.slider-slide');
+const dots = document.querySelectorAll('.slider-dot');
+
+function showSliderSlide(index) {
+  if (slides.length === 0) return;
+  
+  // Wrap index
+  if (index >= slides.length) {
+    currentSlideIndex = 0;
+  } else if (index < 0) {
+    currentSlideIndex = slides.length - 1;
+  } else {
+    currentSlideIndex = index;
+  }
+
+  // Update slides active class
+  slides.forEach((slide, idx) => {
+    if (idx === currentSlideIndex) {
+      slide.classList.add('active');
+    } else {
+      slide.classList.remove('active');
+    }
+  });
+
+  // Update dots active class
+  dots.forEach((dot, idx) => {
+    if (idx === currentSlideIndex) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
+}
+
+// Global functions for inline HTML onclick handlers
+window.changeSlide = function(direction) {
+  resetSlideTimer();
+  showSliderSlide(currentSlideIndex + direction);
+};
+
+window.currentSlide = function(index) {
+  resetSlideTimer();
+  showSliderSlide(index);
+};
+
+function startSlideTimer() {
+  slideInterval = setInterval(() => {
+    showSliderSlide(currentSlideIndex + 1);
+  }, 5000); // change slide every 5 seconds
+}
+
+function resetSlideTimer() {
+  clearInterval(slideInterval);
+  startSlideTimer();
+}
+
+// Start slide timer on DOMContentLoaded
+window.addEventListener('DOMContentLoaded', () => {
+  if (slides.length > 0) {
+    startSlideTimer();
+  }
+});
+
+

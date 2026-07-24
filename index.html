@@ -46,88 +46,76 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero" id="home">
-
-    <!-- Moving Timeline Banner -->
-    <div class="timeline-marquee-container">
-      <div class="marquee-fade-left"></div>
-      <div class="marquee-fade-right"></div>
-      <div class="marquee-track">
-        <div class="marquee-content">
-          <!-- Card 1 -->
-          <div class="timeline-card">
-            <div class="card-img-wrapper">
-              <img src="photo1.jpg" alt="Indo-German Workshop">
-            </div>
-            <div class="card-info">
-              <span class="card-date">2024</span>
-              <h4 class="card-title">Indo-German Workshop</h4>
-              <p class="card-desc">Presented supramolecular systems & bio-applications</p>
-            </div>
-          </div>
-          <!-- Card 2 -->
-          <div class="timeline-card">
-            <div class="card-img-wrapper">
-              <img src="photo2.jpg" alt="C-MEMS Collaboration">
-            </div>
-            <div class="card-info">
-              <span class="card-date">2025</span>
-              <h4 class="card-title">C-MEMS Collaboration</h4>
-              <p class="card-desc">Collaborative microfluidics & lab validation at IIT Goa</p>
-            </div>
-          </div>
-          <!-- Card 3 -->
-          <div class="timeline-card">
-            <div class="card-img-wrapper">
-              <img src="photo3.jpg" alt="NSS Zonal Camp">
-            </div>
-            <div class="card-info">
-              <span class="card-date">2026</span>
-              <h4 class="card-title">NSS Zonal Camp</h4>
-              <p class="card-desc">Led community mobilization & social service initiatives</p>
+  <!-- Photo Timeline Slider Section -->
+  <div class="hero-slider-container">
+    <div class="slider-wrapper">
+      <!-- Slide 1 -->
+      <div class="slider-slide active" data-index="0">
+        <div class="slide-image-wrapper">
+          <img src="photo1.jpg" alt="Indo-German Workshop">
+        </div>
+        <div class="slide-content-overlay">
+          <div class="container">
+            <div class="slide-content">
+              <span class="slide-badge"><i data-lucide="calendar"></i> 2024</span>
+              <h2 class="slide-title">Indo-German Workshop</h2>
+              <p class="slide-desc">Presented research on supramolecular systems and advanced biosensing technology applications.</p>
             </div>
           </div>
         </div>
-        <!-- Duplicate for loop -->
-        <div class="marquee-content" aria-hidden="true">
-          <!-- Card 1 -->
-          <div class="timeline-card">
-            <div class="card-img-wrapper">
-              <img src="photo1.jpg" alt="Indo-German Workshop">
-            </div>
-            <div class="card-info">
-              <span class="card-date">2024</span>
-              <h4 class="card-title">Indo-German Workshop</h4>
-              <p class="card-desc">Presented supramolecular systems & bio-applications</p>
-            </div>
-          </div>
-          <!-- Card 2 -->
-          <div class="timeline-card">
-            <div class="card-img-wrapper">
-              <img src="photo2.jpg" alt="C-MEMS Collaboration">
-            </div>
-            <div class="card-info">
-              <span class="card-date">2025</span>
-              <h4 class="card-title">C-MEMS Collaboration</h4>
-              <p class="card-desc">Collaborative microfluidics & lab validation at IIT Goa</p>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slider-slide" data-index="1">
+        <div class="slide-image-wrapper">
+          <img src="photo2.jpg" alt="C-MEMS Collaboration">
+        </div>
+        <div class="slide-content-overlay">
+          <div class="container">
+            <div class="slide-content">
+              <span class="slide-badge"><i data-lucide="cpu"></i> 2025</span>
+              <h2 class="slide-title">C-MEMS Collaboration</h2>
+              <p class="slide-desc">Collaborative research and microfluidic testing inside the cleanroom lab at IIT Goa.</p>
             </div>
           </div>
-          <!-- Card 3 -->
-          <div class="timeline-card">
-            <div class="card-img-wrapper">
-              <img src="photo3.jpg" alt="NSS Zonal Camp">
-            </div>
-            <div class="card-info">
-              <span class="card-date">2026</span>
-              <h4 class="card-title">NSS Zonal Camp</h4>
-              <p class="card-desc">Led community mobilization & social service initiatives</p>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slider-slide" data-index="2">
+        <div class="slide-image-wrapper">
+          <img src="photo3.jpg" alt="NSS Zonal Camp Leadership">
+        </div>
+        <div class="slide-content-overlay">
+          <div class="container">
+            <div class="slide-content">
+              <span class="slide-badge"><i data-lucide="users"></i> 2026</span>
+              <h2 class="slide-title">NSS Zonal Camp Leadership</h2>
+              <p class="slide-desc">Led community mobilization, local housing construction projects, and student welfare initiatives.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Navigation Arrows -->
+    <button class="slider-nav-btn prev" aria-label="Previous Slide" onclick="changeSlide(-1)">
+      <i data-lucide="chevron-left"></i>
+    </button>
+    <button class="slider-nav-btn next" aria-label="Next Slide" onclick="changeSlide(1)">
+      <i data-lucide="chevron-right"></i>
+    </button>
+
+    <!-- Slide Dots indicators -->
+    <div class="slider-dots">
+      <span class="slider-dot active" onclick="currentSlide(0)"></span>
+      <span class="slider-dot" onclick="currentSlide(1)"></span>
+      <span class="slider-dot" onclick="currentSlide(2)"></span>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
     <div class="container hero-grid">
       <div class="hero-content">
         <div class="hero-badge">
