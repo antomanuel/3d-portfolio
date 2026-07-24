@@ -1630,14 +1630,14 @@ footer a:hover {
   height: 100%;
   z-index: 2;
   background: linear-gradient(
-    90deg,
-    rgba(7, 10, 19, 0.95) 0%,
-    rgba(7, 10, 19, 0.8) 35%,
-    rgba(7, 10, 19, 0.4) 60%,
-    rgba(7, 10, 19, 0.15) 100%
+    to top right,
+    rgba(7, 10, 19, 0.85) 0%,
+    rgba(7, 10, 19, 0.3) 40%,
+    transparent 70%
   );
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  padding-bottom: 3.5rem;
 }
 
 .slide-content {
@@ -1801,12 +1801,12 @@ footer a:hover {
   .slide-content-overlay {
     background: linear-gradient(
       0deg,
-      rgba(7, 10, 19, 0.95) 0%,
-      rgba(7, 10, 19, 0.8) 50%,
-      rgba(7, 10, 19, 0.5) 100%
+      rgba(7, 10, 19, 0.85) 0%,
+      rgba(7, 10, 19, 0.3) 60%,
+      transparent 100%
     );
     align-items: flex-end;
-    padding-bottom: 2.5rem;
+    padding-bottom: 3rem;
   }
   .slide-content {
     max-width: 100%;
