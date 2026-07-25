@@ -853,226 +853,227 @@ nav a:hover::after, nav a.active::after {
   font-weight: 600;
 }
 
-/* --- New Experience Slider Styles --- */
-.experience-slider-container {
+/* --- 3D Chronoflo-style Timeline Styles --- */
+.chrono-timeline-wrapper {
   position: relative;
-  max-width: 900px;
-  margin: 3rem auto 0;
-  padding: 0 1.5rem;
+  width: 100%;
+  height: 560px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 35%, rgba(56, 189, 248, 0.09) 0%, #070a13 75%);
+  perspective: 1000px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+  margin-top: 3rem;
 }
 
-/* Horizontal Timeline Navigation Axis */
-.exp-nav-axis {
-  position: relative;
-  margin-bottom: 3rem;
-  padding: 1rem 0;
-}
-
-.exp-nav-line {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(to right, transparent, var(--color-sky), var(--color-peacock), transparent);
-  transform: translateY(-50%);
-  z-index: 1;
-}
-
-.exp-nav-nodes {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  z-index: 2;
-  overflow-x: auto;
-  scrollbar-width: none; /* Hide scrollbar for clean design */
-}
-.exp-nav-nodes::-webkit-scrollbar {
-  display: none;
-}
-
-.exp-node {
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  transition: all 0.3s ease;
-  min-width: 120px;
-  flex-shrink: 0;
-  outline: none;
-}
-
-.exp-node-dot {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--bg-dark);
-  border: 3px solid rgba(56, 189, 248, 0.4);
-  transition: all 0.3s ease;
-  box-shadow: 0 0 0 rgba(56, 189, 248, 0);
-}
-
-.exp-node-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.exp-node.active .exp-node-dot {
-  background: var(--color-sky);
-  border-color: #ffffff;
-  transform: scale(1.2);
-  box-shadow: 0 0 12px var(--color-sky);
-}
-
-.exp-node.active .exp-node-label {
-  color: var(--color-sky);
-  transform: translateY(-2px);
-  text-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
-}
-
-.exp-node:hover:not(.active) .exp-node-dot {
-  border-color: var(--color-peacock-light);
-  transform: scale(1.1);
-}
-
-.exp-node:hover:not(.active) .exp-node-label {
-  color: var(--color-peacock-light);
-}
-
-/* Sliding Experience Cards */
-.exp-cards-wrapper {
-  position: relative;
-  min-height: 380px;
-  margin-bottom: 2rem;
-}
-
-.exp-slide {
+/* Perspective converging lines overlay */
+.chrono-grid-lines {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  opacity: 0;
-  transform: translateX(30px);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
   pointer-events: none;
   z-index: 1;
+  opacity: 0.15;
 }
 
-.exp-slide.active {
-  position: relative; /* allow height to stretch automatically */
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
+/* The 3D scene */
+.chrono-3d-scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
   z-index: 2;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 0, var(--scene-z, 0px));
 }
 
-.exp-card {
-  padding: 2.5rem;
+/* Staggered 3D cards */
+.chrono-card-wrapper {
+  position: absolute;
+  top: 55px;
+  left: 50%;
+  width: 480px;
+  transform: translate3d(calc(-50% + var(--card-x, 0px)), 0, var(--card-z, 0px));
+  transform-style: preserve-3d;
+  z-index: 1;
+  opacity: 0.25;
+  filter: blur(2px);
+  pointer-events: none;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-box-reflect: below 4px linear-gradient(transparent 65%, rgba(255, 255, 255, 0.08));
+}
+
+.chrono-card-wrapper.active {
+  opacity: 1;
+  filter: blur(0px);
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.chrono-card-wrapper.passed {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chrono-card {
+  background: rgba(13, 20, 38, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
 }
 
-.exp-card:hover {
+.chrono-card-wrapper.active .chrono-card {
   border-color: rgba(56, 189, 248, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(56, 189, 248, 0.08);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
 }
 
-.exp-header {
+.chrono-card-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: 1rem;
 }
 
-.exp-title-group h3 {
-  font-size: 1.4rem;
+.chrono-card-title h3 {
+  font-size: 1.15rem;
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 0.25rem;
 }
 
-.exp-title-group h4 {
-  font-size: 1rem;
+.chrono-card-title h4 {
+  font-size: 0.85rem;
   color: var(--color-sky);
   font-weight: 500;
 }
 
-.timeline-date {
+.chrono-card-date {
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: var(--color-peacock-light);
-  margin-bottom: 0.5rem;
-  display: inline-block;
   background: rgba(45, 212, 191, 0.08);
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.5rem;
   border-radius: 50px;
   border: 1px solid rgba(45, 212, 191, 0.2);
+  white-space: nowrap;
 }
 
-.exp-body {
+.chrono-card-body {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 1rem;
 }
 
-.exp-info p {
-  line-height: 1.6;
+.chrono-card-info p {
+  font-size: 0.8rem;
+  line-height: 1.5;
   color: var(--text-muted);
 }
 
-.exp-tags-container h5 {
-  font-size: 0.9rem;
+.chrono-card-tags h5 {
+  font-size: 0.75rem;
   font-weight: 600;
   color: #ffffff;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-.exp-scrollable-tags {
+.chrono-card-tag-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  max-height: 180px;
+  gap: 0.35rem;
+  max-height: 110px;
   overflow-y: auto;
-  padding-right: 0.5rem;
+  padding-right: 0.25rem;
 }
 
-/* Custom Scrollbar for Tags list */
-.exp-scrollable-tags::-webkit-scrollbar {
-  width: 4px;
+.chrono-card-tag-list::-webkit-scrollbar {
+  width: 3px;
 }
-.exp-scrollable-tags::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 4px;
+.chrono-card-tag-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.01);
 }
-.exp-scrollable-tags::-webkit-scrollbar-thumb {
+.chrono-card-tag-list::-webkit-scrollbar-thumb {
   background: rgba(56, 189, 248, 0.2);
-  border-radius: 4px;
-}
-.exp-scrollable-tags::-webkit-scrollbar-thumb:hover {
-  background: rgba(56, 189, 248, 0.4);
+  border-radius: 2px;
 }
 
-/* Slider Controls */
-.exp-nav-btn {
+/* Stats Panel (styled like reference "Monarch Stats") */
+.chrono-stats-panel {
   position: absolute;
-  top: 55%;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  width: 240px;
+  background: rgba(7, 10, 19, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  pointer-events: auto;
+}
+
+.chrono-stats-panel h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-sky);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.chrono-stats-panel p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+.chrono-stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chrono-stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #ffffff;
+}
+
+.chrono-stat-val {
+  font-weight: 700;
+  color: var(--color-peacock-light);
+}
+
+/* Navigation buttons */
+.chrono-btn {
+  position: absolute;
+  top: 45%;
   transform: translateY(-50%);
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: rgba(7, 10, 19, 0.6);
+  background: rgba(13, 20, 38, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #ffffff;
   display: flex;
@@ -1081,53 +1082,172 @@ nav a:hover::after, nav a.active::after {
   cursor: pointer;
   z-index: 10;
   transition: all 0.3s ease;
+  outline: none;
 }
 
-.exp-nav-btn:hover {
+.chrono-btn:hover {
   background: var(--color-sky);
   color: #ffffff;
   border-color: var(--color-sky);
   box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
 }
 
-.exp-nav-btn.prev {
-  left: -60px;
+.chrono-btn.prev {
+  left: 20px;
 }
 
-.exp-nav-btn.next {
-  right: -60px;
+.chrono-btn.next {
+  right: 20px;
 }
 
-@media (max-width: 1100px) {
-  .exp-nav-btn.prev {
-    left: -15px;
-  }
-  .exp-nav-btn.next {
-    right: -15px;
-  }
+/* Bottom Timeline Axis */
+.chrono-axis-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: linear-gradient(to top, rgba(7, 10, 19, 0.95) 70%, transparent 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 3rem;
+  z-index: 10;
 }
 
-@media (max-width: 768px) {
-  .exp-body {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+.chrono-axis-track {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.chrono-axis-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+.chrono-axis-ticks {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.chrono-axis-node {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  outline: none;
+}
+
+.chrono-node-icon {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.chrono-axis-node:hover .chrono-node-icon,
+.chrono-axis-node.active .chrono-node-icon {
+  color: var(--color-peacock-light);
+  text-shadow: 0 0 8px var(--color-peacock-light);
+  transform: scale(1.2);
+}
+
+.chrono-node-label {
+  position: absolute;
+  top: 25px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.chrono-axis-node.active .chrono-node-label {
+  color: var(--color-sky);
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+}
+
+/* Active Handle/Slider */
+.chrono-axis-handle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 30px;
+  border: 1px solid var(--color-sky);
+  background: rgba(56, 189, 248, 0.15);
+  border-radius: 4px;
+  z-index: 3;
+  pointer-events: none;
+  transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+/* Responsive adjustments for 3D Chrono Timeline */
+@media (max-width: 900px) {
+  .chrono-stats-panel {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 1rem;
+    background: var(--bg-card);
+    border-color: var(--border-light);
   }
-  .exp-header {
+  .chrono-timeline-wrapper {
+    height: auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    perspective: none;
+    overflow: visible;
+  }
+  .chrono-3d-scene {
+    position: relative;
+    transform: none !important;
+    transform-style: flat;
+    display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    align-items: flex-start;
+    gap: 1.5rem;
+    height: auto;
+    z-index: 1;
   }
-  .exp-nav-btn {
-    display: none; /* Swipe/drag or dots/axis nodes is enough on mobile */
+  .chrono-card-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    pointer-events: auto !important;
+    -webkit-box-reflect: none;
   }
-  .exp-card {
-    padding: 1.5rem;
+  .chrono-card-body {
+    grid-template-columns: 1fr;
   }
-  .exp-cards-wrapper {
-    min-height: auto;
-  }
-  .exp-scrollable-tags {
-    max-height: 150px;
+  .chrono-grid-lines,
+  .chrono-btn,
+  .chrono-axis-container {
+    display: none !important;
   }
 }
 

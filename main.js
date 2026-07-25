@@ -515,73 +515,156 @@ function resetSlideTimer() {
   startSlideTimer();
 }
 
-// --- EXPERIENCE TIMELINE SLIDER JS ---
-let currentExpIndex = 0;
-let expInterval;
-const expSlides = document.querySelectorAll('.exp-slide');
-const expNodes = document.querySelectorAll('.exp-node');
+// --- 3D CHRONO TIMELINE JS ---
+let activeChronoIndex = 0;
+let chronoInterval = null;
+let lastChronoScrollTime = 0;
+const chronoStepZ = 450; // must match depth interval in css / html
 
-function showExperienceSlide(index) {
-  if (expSlides.length === 0) return;
+function getChronoElements() {
+  return {
+    scene: document.querySelector('.chrono-3d-scene'),
+    cards: document.querySelectorAll('.chrono-card-wrapper'),
+    nodes: document.querySelectorAll('.chrono-axis-node'),
+    handle: document.getElementById('chrono-slider-handle'),
+    wrapper: document.querySelector('.chrono-timeline-wrapper')
+  };
+}
+
+function showChronoEvent(index) {
+  const el = getChronoElements();
+  if (!el.cards.length) return;
 
   // Wrap index
-  if (index >= expSlides.length) {
-    currentExpIndex = 0;
+  if (index >= el.cards.length) {
+    activeChronoIndex = 0;
   } else if (index < 0) {
-    currentExpIndex = expSlides.length - 1;
+    activeChronoIndex = el.cards.length - 1;
   } else {
-    currentExpIndex = index;
+    activeChronoIndex = index;
   }
 
-  // Update slides active class
-  expSlides.forEach((slide, idx) => {
-    if (idx === currentExpIndex) {
-      slide.classList.add('active');
-    } else {
-      slide.classList.remove('active');
+  // Update 3D Scene Translation
+  if (el.scene) {
+    const sceneZ = activeChronoIndex * chronoStepZ;
+    el.scene.style.setProperty('--scene-z', sceneZ + 'px');
+  }
+
+  // Update cards active/passed states
+  el.cards.forEach((card, idx) => {
+    card.classList.remove('active', 'passed');
+    if (idx === activeChronoIndex) {
+      card.classList.add('active');
+    } else if (idx < activeChronoIndex) {
+      card.classList.add('passed');
     }
   });
 
-  // Update nodes active class
-  expNodes.forEach((node, idx) => {
-    if (idx === currentExpIndex) {
+  // Update bottom axis nodes
+  el.nodes.forEach((node, idx) => {
+    if (idx === activeChronoIndex) {
       node.classList.add('active');
-      node.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     } else {
       node.classList.remove('active');
     }
   });
+
+  // Update bottom slider handle position
+  if (el.handle) {
+    const percent = (activeChronoIndex / (el.cards.length - 1)) * 100;
+    el.handle.style.left = percent + '%';
+  }
 }
 
-window.moveExperience = function(direction) {
-  resetExpTimer();
-  showExperienceSlide(currentExpIndex + direction);
+window.moveChrono = function(direction) {
+  resetChronoTimer();
+  showChronoEvent(activeChronoIndex + direction);
 };
 
-window.showExperience = function(index) {
-  resetExpTimer();
-  showExperienceSlide(index);
+window.jumpToChrono = function(index) {
+  resetChronoTimer();
+  showChronoEvent(index);
 };
 
-function startExpTimer() {
-  expInterval = setInterval(() => {
-    showExperienceSlide(currentExpIndex + 1);
-  }, 7000); // cycle every 7 seconds
+function startChronoTimer() {
+  chronoInterval = setInterval(() => {
+    const el = getChronoElements();
+    if (el.cards.length > 0) {
+      showChronoEvent(activeChronoIndex + 1);
+    }
+  }, 8000); // changes every 8 seconds
 }
 
-function resetExpTimer() {
-  clearInterval(expInterval);
-  startExpTimer();
+function resetChronoTimer() {
+  clearInterval(chronoInterval);
+  startChronoTimer();
 }
 
-// Pause auto-sliding on hover
-const expContainer = document.querySelector('.experience-slider-container');
-if (expContainer) {
-  expContainer.addEventListener('mouseenter', () => {
-    clearInterval(expInterval);
+// Bind wheel scroll and drag/touch gestures
+function initChronoInteractions() {
+  const el = getChronoElements();
+  if (!el.wrapper) return;
+
+  // 1. Mouse wheel scrolling
+  el.wrapper.addEventListener('wheel', (e) => {
+    // Only intercept scroll if viewport is desktop style (height of wrapper is set, i.e. 3D mode is active)
+    const style = window.getComputedStyle(el.wrapper);
+    if (style.height === '560px') {
+      e.preventDefault();
+      const now = Date.now();
+      if (now - lastChronoScrollTime > 800) {
+        lastChronoScrollTime = now;
+        if (e.deltaY > 0) {
+          window.moveChrono(1);
+        } else {
+          window.moveChrono(-1);
+        }
+      }
+    }
+  }, { passive: false });
+
+  // 2. Touch swipe controls
+  let touchStartY = 0;
+  let touchStartX = 0;
+  
+  el.wrapper.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  el.wrapper.addEventListener('touchend', (e) => {
+    const style = window.getComputedStyle(el.wrapper);
+    if (style.height === '560px') {
+      const deltaY = e.changedTouches[0].clientY - touchStartY;
+      const deltaX = e.changedTouches[0].clientX - touchStartX;
+
+      // Check for swipe gesture (either vertical or horizontal)
+      if (Math.abs(deltaY) > 50 || Math.abs(deltaX) > 50) {
+        if (Math.abs(deltaY) > Math.abs(deltaX)) {
+          // Vertical swipe
+          if (deltaY < 0) {
+            window.moveChrono(1); // swipe up -> next
+          } else {
+            window.moveChrono(-1); // swipe down -> prev
+          }
+        } else {
+          // Horizontal swipe
+          if (deltaX < 0) {
+            window.moveChrono(1); // swipe left -> next
+          } else {
+            window.moveChrono(-1); // swipe right -> prev
+          }
+        }
+      }
+    }
+  }, { passive: true });
+
+  // 3. Hover pause
+  el.wrapper.addEventListener('mouseenter', () => {
+    clearInterval(chronoInterval);
   });
-  expContainer.addEventListener('mouseleave', () => {
-    startExpTimer();
+  el.wrapper.addEventListener('mouseleave', () => {
+    startChronoTimer();
   });
 }
 
@@ -590,9 +673,11 @@ window.addEventListener('DOMContentLoaded', () => {
   if (slides.length > 0) {
     startSlideTimer();
   }
-  if (expSlides.length > 0) {
-    showExperienceSlide(0);
-    startExpTimer();
+  const el = getChronoElements();
+  if (el.cards.length > 0) {
+    showChronoEvent(0);
+    startChronoTimer();
+    initChronoInteractions();
   }
 });
 
