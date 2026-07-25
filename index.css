@@ -853,470 +853,104 @@ nav a:hover::after, nav a.active::after {
   font-weight: 600;
 }
 
-/* --- 3D Chronoflo-style Timeline Styles --- */
-.chrono-timeline-wrapper {
+/* Experience Timeline styling */
+.timeline {
   position: relative;
-  width: 100%;
-  height: 560px;
-  overflow: hidden;
-  background: radial-gradient(circle at 50% 35%, rgba(56, 189, 248, 0.09) 0%, #070a13 75%);
-  perspective: 1000px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
-  margin-top: 3rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* Perspective converging lines overlay */
-.chrono-grid-lines {
+.timeline::after {
+  content: '';
   position: absolute;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-sky), var(--color-peacock), transparent);
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.18;
-}
-
-.chrono-grid-lines path {
-  fill: none;
-  stroke-linecap: round;
-}
-
-/* The 3D scene */
-.chrono-3d-scene {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  z-index: 2;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  transform: translate3d(0, 0, var(--scene-z, 0px));
-}
-
-/* Staggered 3D cards */
-.chrono-card-wrapper {
-  position: absolute;
-  top: 40px;
+  bottom: 0;
   left: 50%;
-  width: 360px;
-  transform: translate3d(calc(-50% + var(--card-x, 0px)), 0, var(--card-z, 0px));
-  transform-style: preserve-3d;
-  z-index: 1;
-  opacity: 0.25;
-  filter: blur(2px);
-  pointer-events: none;
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  -webkit-box-reflect: below 4px linear-gradient(transparent 65%, rgba(255, 255, 255, 0.06));
+  margin-left: -1px;
 }
 
-.chrono-card-wrapper.active {
-  opacity: 1;
-  filter: blur(0px);
-  z-index: 5;
-  pointer-events: auto;
-}
-
-.chrono-card-wrapper.passed {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.chrono-card {
-  background: rgba(13, 20, 38, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 1.25rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.chrono-card-wrapper.active .chrono-card {
-  border-color: rgba(56, 189, 248, 0.3);
-  box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
-}
-
-/* Category header */
-.chrono-card-category {
-  font-size: 0.7rem;
-  font-weight: 800;
-  color: var(--color-sky);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-/* Card featured image */
-.chrono-card-img-wrapper {
+.timeline-item {
+  padding: 1rem 3rem;
   position: relative;
-  width: 100%;
-  height: 160px;
-  overflow: hidden;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: transparent;
+  width: 50%;
 }
 
-.chrono-card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.chrono-card-wrapper.active:hover .chrono-card-img {
-  transform: scale(1.05);
-}
-
-.chrono-card-title h3 {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 0.2rem;
-  line-height: 1.3;
-}
-
-.chrono-card-title h4 {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  margin-bottom: 0.4rem;
-}
-
-.chrono-card-date {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-peacock-light);
-  margin-bottom: 0.75rem;
-  display: inline-block;
-}
-
-.chrono-card-desc {
-  font-size: 0.8rem;
-  line-height: 1.5;
-  color: var(--text-muted);
-  margin-bottom: 0.75rem;
-}
-
-/* Competency Tags inside card */
-.chrono-card-tags {
-  margin-top: 0.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 0.75rem;
-}
-
-.chrono-card-tags h5 {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
-}
-
-.chrono-card-tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  max-height: 80px;
-  overflow-y: auto;
-  padding-right: 0.25rem;
-}
-
-.chrono-card-tag-list::-webkit-scrollbar {
-  width: 3px;
-}
-.chrono-card-tag-list::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.01);
-}
-.chrono-card-tag-list::-webkit-scrollbar-thumb {
-  background: rgba(56, 189, 248, 0.2);
-  border-radius: 2px;
-}
-
-/* 3D background year label */
-.chrono-year-bg {
+.timeline-item::after {
+  content: '';
   position: absolute;
-  top: 30px;
-  right: -130px;
-  font-size: 7rem;
-  font-weight: 900;
-  font-family: var(--font-heading);
-  color: rgba(255, 255, 255, 0.025);
-  pointer-events: none;
-  z-index: -1;
-  line-height: 1;
-  transition: color 0.6s ease, transform 0.6s ease;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.002);
-}
-
-.chrono-card-wrapper.active .chrono-year-bg {
-  color: rgba(56, 189, 248, 0.06);
-  transform: translate3d(20px, 0, 50px);
-  text-shadow: 0 0 20px rgba(56, 189, 248, 0.01);
-}
-
-/* Stats Panel (styled like reference "Monarch Stats") */
-.chrono-stats-panel {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 10;
-  width: 230px;
-  background: rgba(13, 20, 38, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 1.25rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  pointer-events: auto;
-}
-
-.chrono-stats-panel h3 {
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--color-sky);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.75rem;
-  border-bottom: 2px solid var(--color-sky);
-  padding-bottom: 0.25rem;
-  display: inline-block;
-}
-
-.chrono-stats-panel p {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  line-height: 1.4;
-  margin-bottom: 1rem;
-}
-
-.chrono-stats-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.chrono-stat-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
-  color: #ffffff;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
-  padding-bottom: 0.35rem;
-}
-
-.chrono-stat-item:last-child {
-  border: none;
-  padding: 0;
-}
-
-.chrono-stat-val {
-  font-weight: 700;
-  color: var(--color-peacock-light);
-  font-size: 0.9rem;
-}
-
-/* Navigation buttons */
-.chrono-btn {
-  position: absolute;
-  top: 45%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
+  width: 16px;
+  height: 16px;
+  right: -8px;
+  background-color: var(--bg-dark);
+  border: 3px solid var(--color-sky);
+  top: 1.5rem;
   border-radius: 50%;
-  background: rgba(13, 20, 38, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s ease;
-  outline: none;
-}
-
-.chrono-btn:hover {
-  background: var(--color-sky);
-  color: #ffffff;
-  border-color: var(--color-sky);
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-}
-
-.chrono-btn.prev {
-  left: 20px;
-}
-
-.chrono-btn.next {
-  right: 20px;
-}
-
-/* Bottom Timeline Axis */
-.chrono-axis-container {
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  width: 100%;
-  height: 95px;
-  background: linear-gradient(to top, rgba(7, 10, 19, 0.95) 70%, transparent 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 3rem;
-  z-index: 10;
-}
-
-.chrono-axis-track {
-  position: relative;
-  width: 100%;
-  height: 24px;
-  display: flex;
-  align-items: center;
-}
-
-.chrono-axis-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.1);
   z-index: 1;
+  box-shadow: var(--shadow-glow);
+  transition: var(--transition);
 }
 
-.chrono-axis-ticks {
+.timeline-item:hover::after {
+  background-color: var(--color-peacock-light);
+  border-color: #ffffff;
+  transform: scale(1.3);
+}
+
+.timeline-left {
+  left: 0;
+}
+
+.timeline-right {
+  left: 50%;
+}
+
+.timeline-right::after {
+  left: -8px;
+}
+
+.timeline-date {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-peacock-light);
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  background: rgba(45, 212, 191, 0.08);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  border: 1px solid rgba(45, 212, 191, 0.2);
+}
+
+.timeline-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-card h4 {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.timeline-card ul {
+  list-style: none;
+}
+
+.timeline-card li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.timeline-card li::before {
+  content: "✦";
   position: absolute;
   left: 0;
-  right: 0;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 2;
-}
-
-.chrono-axis-node {
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  outline: none;
-}
-
-.chrono-node-icon {
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 0.75rem;
-  transition: all 0.3s ease;
-}
-
-.chrono-axis-node:hover .chrono-node-icon,
-.chrono-axis-node.active .chrono-node-icon {
-  color: var(--color-peacock-light);
-  text-shadow: 0 0 8px var(--color-peacock-light);
-  transform: scale(1.2);
-}
-
-.chrono-node-label {
-  position: absolute;
-  top: 25px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  white-space: nowrap;
-  transition: all 0.3s ease;
-}
-
-.chrono-axis-node.active .chrono-node-label {
   color: var(--color-sky);
-  text-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
-}
-
-/* Active Handle/Slider */
-.chrono-axis-handle {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 70px;
-  height: 30px;
-  border: 1px solid var(--color-sky);
-  background: rgba(56, 189, 248, 0.15);
-  border-radius: 4px;
-  z-index: 3;
-  pointer-events: none;
-  transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
-}
-
-/* Responsive adjustments for 3D Chrono Timeline */
-@media (max-width: 900px) {
-  .chrono-stats-panel {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    margin-bottom: 1rem;
-    background: var(--bg-card);
-    border-color: var(--border-light);
-  }
-  .chrono-timeline-wrapper {
-    height: auto;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    perspective: none;
-    overflow: visible;
-  }
-  .chrono-3d-scene {
-    position: relative;
-    transform: none !important;
-    transform-style: flat;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    height: auto;
-    z-index: 1;
-  }
-  .chrono-card-wrapper {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100% !important;
-    transform: none !important;
-    opacity: 1 !important;
-    filter: none !important;
-    pointer-events: auto !important;
-    -webkit-box-reflect: none;
-  }
-  .chrono-card-body {
-    grid-template-columns: 1fr;
-  }
-  .chrono-grid-lines,
-  .chrono-btn,
-  .chrono-axis-container,
-  .chrono-year-bg {
-    display: none !important;
-  }
-  .chrono-card-img-wrapper {
-    height: 200px;
-  }
 }
 
 /* Skills Categories layout */
@@ -1598,7 +1232,20 @@ footer a:hover {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-
+  .timeline::after {
+    left: 31px;
+  }
+  .timeline-item {
+    width: 100%;
+    padding-left: 5rem;
+    padding-right: 1.5rem;
+  }
+  .timeline-left, .timeline-right {
+    left: 0;
+  }
+  .timeline-item::after {
+    left: 23px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1915,269 +1562,421 @@ footer a:hover {
   color: #ef4444;
 }
 
-/* Photo Timeline Slider Banner Styles */
+/* Photo Timeline Slider Banner Styles (converted to 3D Chronoflo) */
 .hero-slider-container {
   margin-top: 4.5rem; /* sits right below the header */
   position: relative;
   width: 100%;
-  height: 260px;
-  background: var(--bg-dark);
+  height: 520px;
+  background: radial-gradient(circle at 50% 35%, rgba(56, 189, 248, 0.09) 0%, #070a13 75%);
+  perspective: 1000px;
   overflow: hidden;
   border-bottom: 1px solid rgba(56, 189, 248, 0.12);
   z-index: 10;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
 }
 
-.slider-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.slider-slide {
+.chrono-grid-lines {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
-  z-index: 1;
-  transition: opacity 0.8s ease-in-out;
   pointer-events: none;
+  z-index: 1;
+  opacity: 0.2;
 }
 
-.slider-slide.active {
-  opacity: 1;
+.chrono-grid-lines path {
+  fill: none;
+  stroke-linecap: round;
+}
+
+/* The 3D scene */
+.chrono-3d-scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
   z-index: 2;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 0, var(--scene-z, 0px));
+}
+
+/* Staggered 3D cards */
+.chrono-card-wrapper {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  width: 360px;
+  transform: translate3d(calc(-50% + var(--card-x, 0px)), 0, var(--card-z, 0px));
+  transform-style: preserve-3d;
+  z-index: 1;
+  opacity: 0.22;
+  filter: blur(2px);
+  pointer-events: none;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-box-reflect: below 4px linear-gradient(transparent 65%, rgba(255, 255, 255, 0.05));
+}
+
+.chrono-card-wrapper.active {
+  opacity: 1;
+  filter: blur(0px);
+  z-index: 5;
   pointer-events: auto;
 }
 
-/* Slide image wrapper for zoom / pan effect */
-.slide-image-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+.chrono-card-wrapper.passed {
+  opacity: 0;
+  pointer-events: none;
 }
 
-.slide-image-wrapper img {
+.chrono-card {
+  background: rgba(13, 20, 38, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.chrono-card-wrapper.active .chrono-card {
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
+}
+
+/* Category header */
+.chrono-card-category {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--color-sky);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+/* Card featured image */
+.chrono-card-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.chrono-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.02);
-  transition: transform 6s ease-out;
+  transition: transform 0.5s ease;
 }
 
-/* Ken Burns effect: subtle slow zoom on the active slide image */
-.slider-slide.active .slide-image-wrapper img {
-  transform: scale(1.08);
+.chrono-card-wrapper.active:hover .chrono-card-img {
+  transform: scale(1.05);
 }
 
-/* Dark fading gradient overlay on top of slide background for text readability */
-.slide-content-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  background: linear-gradient(
-    to top right,
-    rgba(7, 10, 19, 0.85) 0%,
-    rgba(7, 10, 19, 0.3) 40%,
-    transparent 70%
-  );
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: 2rem;
+.chrono-card-title h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.2rem;
+  line-height: 1.3;
 }
 
-.slide-content {
-  max-width: 600px;
-  animation: slideTextIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
-  transform: translateX(-20px);
-}
-
-.slider-slide.active .slide-content {
-  animation-delay: 0.2s;
-}
-
-@keyframes slideTextIn {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.slide-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+.chrono-card-date {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-sky);
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  padding: 0.25rem 0.6rem;
-  border-radius: 50px;
+  color: var(--color-peacock-light);
   margin-bottom: 0.5rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  display: inline-block;
 }
 
-.slide-badge i {
-  width: 12px;
-  height: 12px;
-}
-
-.slide-title {
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, var(--color-sky) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-.slide-desc {
-  font-size: 0.9rem;
+.chrono-card-desc {
+  font-size: 0.8rem;
+  line-height: 1.45;
   color: var(--text-muted);
-  line-height: 1.4;
   margin-bottom: 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* Slider navigation arrows */
-.slider-nav-btn {
+/* 3D background year label */
+.chrono-year-bg {
   position: absolute;
-  top: 50%;
+  top: 30px;
+  right: -130px;
+  font-size: 7rem;
+  font-weight: 900;
+  font-family: var(--font-heading);
+  color: rgba(255, 255, 255, 0.025);
+  pointer-events: none;
+  z-index: -1;
+  line-height: 1;
+  transition: color 0.6s ease, transform 0.6s ease;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.002);
+}
+
+.chrono-card-wrapper.active .chrono-year-bg {
+  color: rgba(56, 189, 248, 0.06);
+  transform: translate3d(20px, 0, 50px);
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.01);
+}
+
+/* Stats Panel (styled like reference "Monarch Stats") */
+.chrono-stats-panel {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  width: 220px;
+  background: rgba(13, 20, 38, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+}
+
+.chrono-stats-panel h3 {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--color-sky);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-sky);
+  padding-bottom: 0.25rem;
+  display: inline-block;
+}
+
+.chrono-stats-panel p {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+.chrono-stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chrono-stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #ffffff;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.25rem;
+}
+
+.chrono-stat-item:last-child {
+  border: none;
+  padding: 0;
+}
+
+.chrono-stat-val {
+  font-weight: 700;
+  color: var(--color-peacock-light);
+}
+
+/* Navigation buttons */
+.chrono-btn {
+  position: absolute;
+  top: 45%;
   transform: translateY(-50%);
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(13, 20, 38, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: rgba(13, 20, 38, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  transition: var(--transition);
-  opacity: 0;
-  pointer-events: none;
+  transition: all 0.3s ease;
+  outline: none;
 }
 
-.slider-nav-btn i {
-  width: 24px;
-  height: 24px;
-  transition: transform 0.3s ease;
-}
-
-.hero-slider-container:hover .slider-nav-btn {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.slider-nav-btn:hover {
-  background: rgba(56, 189, 248, 0.2);
+.chrono-btn:hover {
+  background: var(--color-sky);
+  color: #ffffff;
   border-color: var(--color-sky);
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
 }
 
-.slider-nav-btn.prev {
-  left: 2rem;
-}
-.slider-nav-btn.next {
-  right: 2rem;
+.chrono-btn.prev {
+  left: 20px;
 }
 
-.slider-nav-btn.prev:hover i {
-  transform: translateX(-2px);
-}
-.slider-nav-btn.next:hover i {
-  transform: translateX(2px);
+.chrono-btn.next {
+  right: 20px;
 }
 
-/* Dot indicators */
-.slider-dots {
+/* Bottom Timeline Axis */
+.chrono-axis-container {
   position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 85px;
+  background: linear-gradient(to top, rgba(7, 10, 19, 0.95) 70%, transparent 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
-  gap: 0.75rem;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 3rem;
   z-index: 10;
 }
 
-.slider-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
+.chrono-axis-track {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.chrono-axis-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+.chrono-axis-ticks {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.chrono-axis-node {
+  background: none;
+  border: none;
   cursor: pointer;
-  transition: var(--transition);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  outline: none;
 }
 
-.slider-dot.active {
-  background: var(--color-sky);
-  box-shadow: 0 0 8px var(--color-sky);
-  width: 24px;
-  border-radius: 10px;
+.chrono-node-icon {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
 }
 
-/* Responsiveness for Slider */
-@media (max-width: 1024px) {
+.chrono-axis-node:hover .chrono-node-icon,
+.chrono-axis-node.active .chrono-node-icon {
+  color: var(--color-peacock-light);
+  text-shadow: 0 0 8px var(--color-peacock-light);
+  transform: scale(1.2);
+}
+
+.chrono-node-label {
+  position: absolute;
+  top: 25px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.chrono-axis-node.active .chrono-node-label {
+  color: var(--color-sky);
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+}
+
+/* Active Handle/Slider */
+.chrono-axis-handle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 30px;
+  border: 1px solid var(--color-sky);
+  background: rgba(56, 189, 248, 0.15);
+  border-radius: 4px;
+  z-index: 3;
+  pointer-events: none;
+  transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+/* Responsive adjustments for 3D Chrono Timeline */
+@media (max-width: 900px) {
+  .chrono-stats-panel {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 1rem;
+    background: var(--bg-card);
+    border-color: var(--border-light);
+  }
   .hero-slider-container {
-    height: 220px;
+    height: auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    perspective: none;
+    overflow: visible;
   }
-  .slide-title {
-    font-size: 1.4rem;
+  .chrono-3d-scene {
+    position: relative;
+    transform: none !important;
+    transform-style: flat;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: auto;
+    z-index: 1;
   }
-  .slide-desc {
-    font-size: 0.85rem;
+  .chrono-card-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    pointer-events: auto !important;
+    -webkit-box-reflect: none;
   }
-}
-
-@media (max-width: 768px) {
-  .hero-slider-container {
-    height: 180px;
+  .chrono-grid-lines,
+  .chrono-btn,
+  .chrono-axis-container,
+  .chrono-year-bg {
+    display: none !important;
   }
-  .slide-content-overlay {
-    background: linear-gradient(
-      0deg,
-      rgba(7, 10, 19, 0.9) 0%,
-      rgba(7, 10, 19, 0.4) 65%,
-      transparent 100%
-    );
-    align-items: flex-end;
-    padding-bottom: 1.5rem;
-  }
-  .slide-content {
-    max-width: 100%;
-    padding: 0 0.5rem;
-  }
-  .slide-title {
-    font-size: 1.2rem;
-    margin-bottom: 0.25rem;
-  }
-  .slide-desc {
-    font-size: 0.8rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .slider-nav-btn {
-    display: none; /* Hide arrows on mobile */
+  .chrono-card-img-wrapper {
+    height: 200px;
   }
 }
 
