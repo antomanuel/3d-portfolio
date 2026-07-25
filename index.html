@@ -959,20 +959,19 @@
       </div>
 
       <div class="chrono-timeline-wrapper">
-        <!-- 3D guidelines background grid lines -->
+        <!-- 3D curved guidelines background grid lines -->
         <svg class="chrono-grid-lines" viewBox="0 0 1000 500">
-          <!-- Convergence lines to vanishing point at (500, 150) -->
-          <line x1="100" y1="450" x2="500" y2="150" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5" stroke-dasharray="4 4" />
-          <line x1="900" y1="450" x2="500" y2="150" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5" stroke-dasharray="4 4" />
-          <line x1="300" y1="450" x2="500" y2="150" stroke="rgba(13, 148, 136, 0.3)" stroke-width="1" />
-          <line x1="700" y1="450" x2="500" y2="150" stroke="rgba(13, 148, 136, 0.3)" stroke-width="1" />
-          <line x1="500" y1="450" x2="500" y2="150" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1" />
+          <path d="M 500,80 Q 300,220 100,450" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5" stroke-dasharray="4 4" />
+          <path d="M 500,80 Q 400,220 300,450" stroke="rgba(56, 189, 248, 0.2)" stroke-width="1" stroke-dasharray="3 3" />
+          <path d="M 500,80 L 500,450" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5" />
+          <path d="M 500,80 Q 600,220 700,450" stroke="rgba(56, 189, 248, 0.2)" stroke-width="1" stroke-dasharray="3 3" />
+          <path d="M 500,80 Q 700,220 900,450" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5" stroke-dasharray="4 4" />
           
-          <!-- Depth tick lines (horizontal segments) -->
-          <line x1="200" y1="375" x2="800" y2="375" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />
-          <line x1="300" y1="300" x2="700" y2="300" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />
-          <line x1="380" y1="225" x2="620" y2="225" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1" />
-          <line x1="440" y1="175" x2="560" y2="175" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1" />
+          <!-- Curved horizontal depth segments (smile shapes) -->
+          <path d="M 120,430 Q 500,470 880,430" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.2" />
+          <path d="M 230,340 Q 500,375 770,340" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />
+          <path d="M 330,250 Q 500,280 670,250" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1" />
+          <path d="M 410,170 Q 500,192 590,170" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1" />
         </svg>
 
         <!-- Stats Panel (styled like reference "Monarch Stats") -->
@@ -1003,54 +1002,52 @@
         <div class="chrono-3d-scene">
           <!-- Card 1 (June 2025 - Present) -->
           <div class="chrono-card-wrapper active" style="--card-x: 120px; --card-z: 0px;" data-index="0">
+            <span class="chrono-year-bg">2025</span>
             <div class="chrono-card">
-              <div class="chrono-card-header">
-                <div class="chrono-card-title">
-                  <h3>Assistant Professor | HoD (i/c) | Deputy Controller</h3>
-                  <h4>Rajadhani Institute of Engineering and Technology, Kerala</h4>
-                </div>
-                <span class="chrono-card-date">2025 - Present</span>
+              <span class="chrono-card-category">RAJADHANI RIET</span>
+              <div class="chrono-card-img-wrapper">
+                <img src="csir_technofest_collage.jpg" alt="CSIR Technofest HoD representation" class="chrono-card-img">
               </div>
-              <div class="chrono-card-body">
-                <div class="chrono-card-info">
-                  <p style="font-weight: 600; color: var(--color-sky); margin-bottom: 0.25rem;">Biomedical Eng & Examinations</p>
-                  <p>Led biomedical engineering department management, curriculum alignment, student projects, NBA/NAAC accreditations, workshops, and industry partnerships. Supervised examination planning, timetabling, results processing, revaluations, and quality assurance workflows.</p>
-                </div>
-                <div class="chrono-card-tags">
-                  <h5>Competencies</h5>
-                  <div class="chrono-card-tag-list">
-                    <span class="project-tag">Academic Planning</span>
-                    <span class="project-tag">Curriculum Development</span>
-                    <span class="project-tag">Faculty Management</span>
-                    <span class="project-tag">Research Promotion</span>
-                    <span class="project-tag">Publication Support</span>
-                    <span class="project-tag">Industry Collaboration</span>
-                    <span class="project-tag">Student Mentoring</span>
-                    <span class="project-tag">Project Guidance</span>
-                    <span class="project-tag">Accreditation Compliance</span>
-                    <span class="project-tag">Quality Enhancement</span>
-                    <span class="project-tag">Budget Management</span>
-                    <span class="project-tag">Resource Allocation</span>
-                    <span class="project-tag">Workshop Coordination</span>
-                    <span class="project-tag">Seminar Organization</span>
-                    <span class="project-tag">Event Management</span>
-                    <span class="project-tag">Policy Development</span>
-                    <span class="project-tag">Policy Implementation</span>
-                    <span class="project-tag">Examination Planning</span>
-                    <span class="project-tag">Examination Coordination</span>
-                    <span class="project-tag">Schedule Preparation</span>
-                    <span class="project-tag">Timetable Management</span>
-                    <span class="project-tag">Evaluation Oversight</span>
-                    <span class="project-tag">Results Processing</span>
-                    <span class="project-tag">Results Publication</span>
-                    <span class="project-tag">Document Confidentiality</span>
-                    <span class="project-tag">Revaluation Coordination</span>
-                    <span class="project-tag">Scrutiny Management</span>
-                    <span class="project-tag">Grievance Redressal</span>
-                    <span class="project-tag">Digital Implementation</span>
-                    <span class="project-tag">Regulatory Compliance</span>
-                    <span class="project-tag">Quality Assurance</span>
-                  </div>
+              <div class="chrono-card-title">
+                <h3>Assistant Professor | HoD (i/c) | Deputy Controller</h3>
+                <h4>Rajadhani Institute of Engineering and Technology, Kerala</h4>
+              </div>
+              <span class="chrono-card-date">June 2025 - Present</span>
+              <p class="chrono-card-desc">Led biomedical engineering department management, curriculum alignment, student projects, NBA/NAAC accreditations, workshops, and industry partnerships. Concurrently supervised examinations and result boards as Deputy Controller.</p>
+              <div class="chrono-card-tags">
+                <h5>Competencies</h5>
+                <div class="chrono-card-tag-list">
+                  <span class="project-tag">Academic Planning</span>
+                  <span class="project-tag">Curriculum Development</span>
+                  <span class="project-tag">Faculty Management</span>
+                  <span class="project-tag">Research Promotion</span>
+                  <span class="project-tag">Publication Support</span>
+                  <span class="project-tag">Industry Collaboration</span>
+                  <span class="project-tag">Student Mentoring</span>
+                  <span class="project-tag">Project Guidance</span>
+                  <span class="project-tag">Accreditation Compliance</span>
+                  <span class="project-tag">Quality Enhancement</span>
+                  <span class="project-tag">Budget Management</span>
+                  <span class="project-tag">Resource Allocation</span>
+                  <span class="project-tag">Workshop Coordination</span>
+                  <span class="project-tag">Seminar Organization</span>
+                  <span class="project-tag">Event Management</span>
+                  <span class="project-tag">Policy Development</span>
+                  <span class="project-tag">Policy Implementation</span>
+                  <span class="project-tag">Examination Planning</span>
+                  <span class="project-tag">Examination Coordination</span>
+                  <span class="project-tag">Schedule Preparation</span>
+                  <span class="project-tag">Timetable Management</span>
+                  <span class="project-tag">Evaluation Oversight</span>
+                  <span class="project-tag">Results Processing</span>
+                  <span class="project-tag">Results Publication</span>
+                  <span class="project-tag">Document Confidentiality</span>
+                  <span class="project-tag">Revaluation Coordination</span>
+                  <span class="project-tag">Scrutiny Management</span>
+                  <span class="project-tag">Grievance Redressal</span>
+                  <span class="project-tag">Digital Implementation</span>
+                  <span class="project-tag">Regulatory Compliance</span>
+                  <span class="project-tag">Quality Assurance</span>
                 </div>
               </div>
             </div>
@@ -1058,49 +1055,47 @@
 
           <!-- Card 2 (April 2016 - May 2025) -->
           <div class="chrono-card-wrapper" style="--card-x: -120px; --card-z: -450px;" data-index="1">
+            <span class="chrono-year-bg">2016</span>
             <div class="chrono-card">
-              <div class="chrono-card-header">
-                <div class="chrono-card-title">
-                  <h3>Assistant Professor</h3>
-                  <h4>St. Joseph's College of Engineering and Technology, Palai</h4>
-                </div>
-                <span class="chrono-card-date">2016 - 2025</span>
+              <span class="chrono-card-category">ST. JOSEPH'S SJCET</span>
+              <div class="chrono-card-img-wrapper">
+                <img src="lab_characterization.jpg" alt="Lab Characterization Teaching" class="chrono-card-img">
               </div>
-              <div class="chrono-card-body">
-                <div class="chrono-card-info">
-                  <p style="font-weight: 600; color: var(--color-sky); margin-bottom: 0.25rem;">Electronics & Comm. Eng</p>
-                  <p>Delivered undergraduate and postgraduate instruction in VLSI, embedded systems, microprocessors, and MEMS technology. Managed laboratories, directed student theses, and coordinated NBA/NAAC accreditation documentation. Led NSS student activities as Programme Officer, managing community development projects and medical camps.</p>
-                </div>
-                <div class="chrono-card-tags">
-                  <h5>Competencies</h5>
-                  <div class="chrono-card-tag-list">
-                    <span class="project-tag">UG & PG Teaching</span>
-                    <span class="project-tag">Electronic Engineering</span>
-                    <span class="project-tag">Biomedical Engineering</span>
-                    <span class="project-tag">Embedded Systems</span>
-                    <span class="project-tag">MEMS</span>
-                    <span class="project-tag">Lesson Planning</span>
-                    <span class="project-tag">Material Preparation</span>
-                    <span class="project-tag">Assessment Development</span>
-                    <span class="project-tag">Laboratory Instruction</span>
-                    <span class="project-tag">Experiment Development</span>
-                    <span class="project-tag">Project Supervision</span>
-                    <span class="project-tag">PG Coordination</span>
-                    <span class="project-tag">Programme Administration</span>
-                    <span class="project-tag">Laboratory Management</span>
-                    <span class="project-tag">Infrastructure Upgrading</span>
-                    <span class="project-tag">Admission Coordination</span>
-                    <span class="project-tag">Student Support</span>
-                    <span class="project-tag">Technical Events Coordination</span>
-                    <span class="project-tag">FDP & Organization</span>
-                    <span class="project-tag">NSS Leadership</span>
-                    <span class="project-tag">Eight-Year Service</span>
-                    <span class="project-tag">Seven Houses</span>
-                    <span class="project-tag">Seven Camps</span>
-                    <span class="project-tag">NBA Documentation</span>
-                    <span class="project-tag">NAAC Documentation</span>
-                    <span class="project-tag">Quality Enhancement</span>
-                  </div>
+              <div class="chrono-card-title">
+                <h3>Assistant Professor</h3>
+                <h4>St. Joseph's College of Engineering and Technology, Palai</h4>
+              </div>
+              <span class="chrono-card-date">April 2016 - May 2025</span>
+              <p class="chrono-card-desc">Delivered undergraduate and postgraduate instruction in VLSI, embedded systems, microprocessors, and MEMS technology. Directed student research theses, managed laboratory development, and compiled accreditation documents (NBA/NAAC). Served as NSS Programme Officer leading camps and community projects.</p>
+              <div class="chrono-card-tags">
+                <h5>Competencies</h5>
+                <div class="chrono-card-tag-list">
+                  <span class="project-tag">UG & PG Teaching</span>
+                  <span class="project-tag">Electronic Engineering</span>
+                  <span class="project-tag">Biomedical Engineering</span>
+                  <span class="project-tag">Embedded Systems</span>
+                  <span class="project-tag">MEMS</span>
+                  <span class="project-tag">Lesson Planning</span>
+                  <span class="project-tag">Material Preparation</span>
+                  <span class="project-tag">Assessment Development</span>
+                  <span class="project-tag">Laboratory Instruction</span>
+                  <span class="project-tag">Experiment Development</span>
+                  <span class="project-tag">Project Supervision</span>
+                  <span class="project-tag">PG Coordination</span>
+                  <span class="project-tag">Programme Administration</span>
+                  <span class="project-tag">Laboratory Management</span>
+                  <span class="project-tag">Infrastructure Upgrading</span>
+                  <span class="project-tag">Admission Coordination</span>
+                  <span class="project-tag">Student Support</span>
+                  <span class="project-tag">Technical Events Coordination</span>
+                  <span class="project-tag">FDP & Organization</span>
+                  <span class="project-tag">NSS Leadership</span>
+                  <span class="project-tag">Eight-Year Service</span>
+                  <span class="project-tag">Seven Houses</span>
+                  <span class="project-tag">Seven Camps</span>
+                  <span class="project-tag">NBA Documentation</span>
+                  <span class="project-tag">NAAC Documentation</span>
+                  <span class="project-tag">Quality Enhancement</span>
                 </div>
               </div>
             </div>
@@ -1108,38 +1103,36 @@
 
           <!-- Card 3 (December 2015 - March 2016) -->
           <div class="chrono-card-wrapper" style="--card-x: 120px; --card-z: -900px;" data-index="2">
+            <span class="chrono-year-bg">2015</span>
             <div class="chrono-card">
-              <div class="chrono-card-header">
-                <div class="chrono-card-title">
-                  <h3>Research & Development Engineer</h3>
-                  <h4>Simstream Pvt. Ltd., Kochi</h4>
-                </div>
-                <span class="chrono-card-date">2015 - 2016</span>
+              <span class="chrono-card-category">SIMSTREAM KOCHI</span>
+              <div class="chrono-card-img-wrapper">
+                <img src="probe_station_closeup.jpg" alt="R&D Embedded Systems Testing" class="chrono-card-img">
               </div>
-              <div class="chrono-card-body">
-                <div class="chrono-card-info">
-                  <p style="font-weight: 600; color: var(--color-sky); margin-bottom: 0.25rem;">Embedded & IoT Solutions</p>
-                  <p>Designed real-time firmware and hardware prototypes for industrial data acquisition and IoT platforms. Performed product debugging, requirement gathering, and authored system verification manuals.</p>
-                </div>
-                <div class="chrono-card-tags">
-                  <h5>Competencies</h5>
-                  <div class="chrono-card-tag-list">
-                    <span class="project-tag">Embedded Solutions</span>
-                    <span class="project-tag">Real-Time Applications</span>
-                    <span class="project-tag">Requirement Analysis</span>
-                    <span class="project-tag">System Design</span>
-                    <span class="project-tag">Prototype Development</span>
-                    <span class="project-tag">System Testing</span>
-                    <span class="project-tag">Solution Deployment</span>
-                    <span class="project-tag">Industrial Projects</span>
-                    <span class="project-tag">IoT Development</span>
-                    <span class="project-tag">Data Acquisition</span>
-                    <span class="project-tag">Process Automation</span>
-                    <span class="project-tag">Quality Inspection</span>
-                    <span class="project-tag">Quality Assurance</span>
-                    <span class="project-tag">Technical Documentation</span>
-                    <span class="project-tag">Process Documentation</span>
-                  </div>
+              <div class="chrono-card-title">
+                <h3>Research & Development Engineer</h3>
+                <h4>Simstream Pvt. Ltd., Kochi</h4>
+              </div>
+              <span class="chrono-card-date">December 2015 - March 2016</span>
+              <p class="chrono-card-desc">Designed and prototyped real-time firmware, microcontrollers, data acquisition units, and IoT solutions. Performed code debugging, circuit logic verification, and prepared technical instruction documents.</p>
+              <div class="chrono-card-tags">
+                <h5>Competencies</h5>
+                <div class="chrono-card-tag-list">
+                  <span class="project-tag">Embedded Solutions</span>
+                  <span class="project-tag">Real-Time Applications</span>
+                  <span class="project-tag">Requirement Analysis</span>
+                  <span class="project-tag">System Design</span>
+                  <span class="project-tag">Prototype Development</span>
+                  <span class="project-tag">System Testing</span>
+                  <span class="project-tag">Solution Deployment</span>
+                  <span class="project-tag">Industrial Projects</span>
+                  <span class="project-tag">IoT Development</span>
+                  <span class="project-tag">Data Acquisition</span>
+                  <span class="project-tag">Process Automation</span>
+                  <span class="project-tag">Quality Inspection</span>
+                  <span class="project-tag">Quality Assurance</span>
+                  <span class="project-tag">Technical Documentation</span>
+                  <span class="project-tag">Process Documentation</span>
                 </div>
               </div>
             </div>
@@ -1147,33 +1140,31 @@
 
           <!-- Card 4 (August 2012 - June 2013) -->
           <div class="chrono-card-wrapper" style="--card-x: -120px; --card-z: -1350px;" data-index="3">
+            <span class="chrono-year-bg">2012</span>
             <div class="chrono-card">
-              <div class="chrono-card-header">
-                <div class="chrono-card-title">
-                  <h3>Production Engineer</h3>
-                  <h4>IPA Pvt. Ltd., Bengaluru</h4>
-                </div>
-                <span class="chrono-card-date">2012 - 2013</span>
+              <span class="chrono-card-category">IPA BENGALURU</span>
+              <div class="chrono-card-img-wrapper">
+                <img src="laser_lithography.jpg" alt="Instrumentation Production Assembly" class="chrono-card-img">
               </div>
-              <div class="chrono-card-body">
-                <div class="chrono-card-info">
-                  <p style="font-weight: 600; color: var(--color-sky); margin-bottom: 0.25rem;">Industrial Instrumentation</p>
-                  <p>Managed industrial instrumentation assembly, sensor calibration, PLC programming, and final testing. Collaborated on manufacturing process optimizations and quality assurance check procedures.</p>
-                </div>
-                <div class="chrono-card-tags">
-                  <h5>Competencies</h5>
-                  <div class="chrono-card-tag-list">
-                    <span class="project-tag">Equipment Calibration</span>
-                    <span class="project-tag">Technical Troubleshooting</span>
-                    <span class="project-tag">Quality Assurance</span>
-                    <span class="project-tag">Solution Deployment</span>
-                    <span class="project-tag">PLC Programming</span>
-                    <span class="project-tag">Production Planning</span>
-                    <span class="project-tag">Process Optimization</span>
-                    <span class="project-tag">Technical Documentation</span>
-                    <span class="project-tag">Production Reporting</span>
-                    <span class="project-tag">Process Documentation</span>
-                  </div>
+              <div class="chrono-card-title">
+                <h3>Production Engineer</h3>
+                <h4>IPA Pvt. Ltd., Bengaluru</h4>
+              </div>
+              <span class="chrono-card-date">August 2012 - June 2013</span>
+              <p class="chrono-card-desc">Managed assembly operations of industrial instrumentation systems, sensor calibration equipment, and PLC controller programming. Authored production reports and process flow documents.</p>
+              <div class="chrono-card-tags">
+                <h5>Competencies</h5>
+                <div class="chrono-card-tag-list">
+                  <span class="project-tag">Equipment Calibration</span>
+                  <span class="project-tag">Technical Troubleshooting</span>
+                  <span class="project-tag">Quality Assurance</span>
+                  <span class="project-tag">Solution Deployment</span>
+                  <span class="project-tag">PLC Programming</span>
+                  <span class="project-tag">Production Planning</span>
+                  <span class="project-tag">Process Optimization</span>
+                  <span class="project-tag">Technical Documentation</span>
+                  <span class="project-tag">Production Reporting</span>
+                  <span class="project-tag">Process Documentation</span>
                 </div>
               </div>
             </div>

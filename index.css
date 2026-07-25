@@ -876,7 +876,12 @@ nav a:hover::after, nav a.active::after {
   height: 100%;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.15;
+  opacity: 0.18;
+}
+
+.chrono-grid-lines path {
+  fill: none;
+  stroke-linecap: round;
 }
 
 /* The 3D scene */
@@ -895,9 +900,9 @@ nav a:hover::after, nav a.active::after {
 /* Staggered 3D cards */
 .chrono-card-wrapper {
   position: absolute;
-  top: 55px;
+  top: 40px;
   left: 50%;
-  width: 480px;
+  width: 360px;
   transform: translate3d(calc(-50% + var(--card-x, 0px)), 0, var(--card-z, 0px));
   transform-style: preserve-3d;
   z-index: 1;
@@ -907,7 +912,7 @@ nav a:hover::after, nav a.active::after {
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
               filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  -webkit-box-reflect: below 4px linear-gradient(transparent 65%, rgba(255, 255, 255, 0.08));
+  -webkit-box-reflect: below 4px linear-gradient(transparent 65%, rgba(255, 255, 255, 0.06));
 }
 
 .chrono-card-wrapper.active {
@@ -928,9 +933,11 @@ nav a:hover::after, nav a.active::after {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
-  padding: 1.5rem;
+  padding: 1.25rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .chrono-card-wrapper.active .chrono-card {
@@ -938,66 +945,90 @@ nav a:hover::after, nav a.active::after {
   box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
 }
 
-.chrono-card-header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  padding-bottom: 0.75rem;
-  margin-bottom: 0.75rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
+/* Category header */
+.chrono-card-category {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--color-sky);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Card featured image */
+.chrono-card-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.chrono-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.chrono-card-wrapper.active:hover .chrono-card-img {
+  transform: scale(1.05);
 }
 
 .chrono-card-title h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 800;
   color: #ffffff;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
+  line-height: 1.3;
 }
 
 .chrono-card-title h4 {
-  font-size: 0.85rem;
-  color: var(--color-sky);
+  font-size: 0.8rem;
   font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
 }
 
 .chrono-card-date {
-  font-weight: 700;
   font-size: 0.75rem;
+  font-weight: 700;
   color: var(--color-peacock-light);
-  background: rgba(45, 212, 191, 0.08);
-  padding: 0.2rem 0.5rem;
-  border-radius: 50px;
-  border: 1px solid rgba(45, 212, 191, 0.2);
-  white-space: nowrap;
+  margin-bottom: 0.75rem;
+  display: inline-block;
 }
 
-.chrono-card-body {
-  display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  gap: 1rem;
-}
-
-.chrono-card-info p {
+.chrono-card-desc {
   font-size: 0.8rem;
   line-height: 1.5;
   color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+/* Competency Tags inside card */
+.chrono-card-tags {
+  margin-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 0.75rem;
 }
 
 .chrono-card-tags h5 {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.7rem;
+  font-weight: 700;
   color: #ffffff;
-  margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
 }
 
 .chrono-card-tag-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  max-height: 110px;
+  max-height: 80px;
   overflow-y: auto;
   padding-right: 0.25rem;
 }
@@ -1013,20 +1044,42 @@ nav a:hover::after, nav a.active::after {
   border-radius: 2px;
 }
 
+/* 3D background year label */
+.chrono-year-bg {
+  position: absolute;
+  top: 30px;
+  right: -130px;
+  font-size: 7rem;
+  font-weight: 900;
+  font-family: var(--font-heading);
+  color: rgba(255, 255, 255, 0.025);
+  pointer-events: none;
+  z-index: -1;
+  line-height: 1;
+  transition: color 0.6s ease, transform 0.6s ease;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.002);
+}
+
+.chrono-card-wrapper.active .chrono-year-bg {
+  color: rgba(56, 189, 248, 0.06);
+  transform: translate3d(20px, 0, 50px);
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.01);
+}
+
 /* Stats Panel (styled like reference "Monarch Stats") */
 .chrono-stats-panel {
   position: absolute;
   top: 20px;
   left: 20px;
   z-index: 10;
-  width: 240px;
-  background: rgba(7, 10, 19, 0.75);
+  width: 230px;
+  background: rgba(13, 20, 38, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  padding: 1.25rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   pointer-events: auto;
 }
 
@@ -1036,20 +1089,23 @@ nav a:hover::after, nav a.active::after {
   color: var(--color-sky);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-sky);
+  padding-bottom: 0.25rem;
+  display: inline-block;
 }
 
 .chrono-stats-panel p {
   font-size: 0.75rem;
   color: var(--text-muted);
   line-height: 1.4;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .chrono-stats-list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
 .chrono-stat-item {
@@ -1058,11 +1114,19 @@ nav a:hover::after, nav a.active::after {
   align-items: center;
   font-size: 0.8rem;
   color: #ffffff;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.35rem;
+}
+
+.chrono-stat-item:last-child {
+  border: none;
+  padding: 0;
 }
 
 .chrono-stat-val {
   font-weight: 700;
   color: var(--color-peacock-light);
+  font-size: 0.9rem;
 }
 
 /* Navigation buttons */
@@ -1106,7 +1170,7 @@ nav a:hover::after, nav a.active::after {
   bottom: 0px;
   left: 0;
   width: 100%;
-  height: 90px;
+  height: 95px;
   background: linear-gradient(to top, rgba(7, 10, 19, 0.95) 70%, transparent 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
@@ -1246,8 +1310,12 @@ nav a:hover::after, nav a.active::after {
   }
   .chrono-grid-lines,
   .chrono-btn,
-  .chrono-axis-container {
+  .chrono-axis-container,
+  .chrono-year-bg {
     display: none !important;
+  }
+  .chrono-card-img-wrapper {
+    height: 200px;
   }
 }
 
