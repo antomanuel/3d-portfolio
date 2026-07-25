@@ -515,10 +515,84 @@ function resetSlideTimer() {
   startSlideTimer();
 }
 
-// Start slide timer on DOMContentLoaded
+// --- EXPERIENCE TIMELINE SLIDER JS ---
+let currentExpIndex = 0;
+let expInterval;
+const expSlides = document.querySelectorAll('.exp-slide');
+const expNodes = document.querySelectorAll('.exp-node');
+
+function showExperienceSlide(index) {
+  if (expSlides.length === 0) return;
+
+  // Wrap index
+  if (index >= expSlides.length) {
+    currentExpIndex = 0;
+  } else if (index < 0) {
+    currentExpIndex = expSlides.length - 1;
+  } else {
+    currentExpIndex = index;
+  }
+
+  // Update slides active class
+  expSlides.forEach((slide, idx) => {
+    if (idx === currentExpIndex) {
+      slide.classList.add('active');
+    } else {
+      slide.classList.remove('active');
+    }
+  });
+
+  // Update nodes active class
+  expNodes.forEach((node, idx) => {
+    if (idx === currentExpIndex) {
+      node.classList.add('active');
+      node.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    } else {
+      node.classList.remove('active');
+    }
+  });
+}
+
+window.moveExperience = function(direction) {
+  resetExpTimer();
+  showExperienceSlide(currentExpIndex + direction);
+};
+
+window.showExperience = function(index) {
+  resetExpTimer();
+  showExperienceSlide(index);
+};
+
+function startExpTimer() {
+  expInterval = setInterval(() => {
+    showExperienceSlide(currentExpIndex + 1);
+  }, 7000); // cycle every 7 seconds
+}
+
+function resetExpTimer() {
+  clearInterval(expInterval);
+  startExpTimer();
+}
+
+// Pause auto-sliding on hover
+const expContainer = document.querySelector('.experience-slider-container');
+if (expContainer) {
+  expContainer.addEventListener('mouseenter', () => {
+    clearInterval(expInterval);
+  });
+  expContainer.addEventListener('mouseleave', () => {
+    startExpTimer();
+  });
+}
+
+// Start timers on DOMContentLoaded
 window.addEventListener('DOMContentLoaded', () => {
   if (slides.length > 0) {
     startSlideTimer();
+  }
+  if (expSlides.length > 0) {
+    showExperienceSlide(0);
+    startExpTimer();
   }
 });
 

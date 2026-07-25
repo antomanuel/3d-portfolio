@@ -853,62 +853,158 @@ nav a:hover::after, nav a.active::after {
   font-weight: 600;
 }
 
-/* Experience Timeline styling */
-.timeline {
+/* --- New Experience Slider Styles --- */
+.experience-slider-container {
   position: relative;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 3rem auto 0;
+  padding: 0 1.5rem;
 }
 
-.timeline::after {
-  content: '';
-  position: absolute;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--color-sky), var(--color-peacock), transparent);
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  margin-left: -1px;
-}
-
-.timeline-item {
-  padding: 1rem 3rem;
+/* Horizontal Timeline Navigation Axis */
+.exp-nav-axis {
   position: relative;
-  background: transparent;
-  width: 50%;
+  margin-bottom: 3rem;
+  padding: 1rem 0;
 }
 
-.timeline-item::after {
-  content: '';
+.exp-nav-line {
   position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--color-sky), var(--color-peacock), transparent);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.exp-nav-nodes {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+  overflow-x: auto;
+  scrollbar-width: none; /* Hide scrollbar for clean design */
+}
+.exp-nav-nodes::-webkit-scrollbar {
+  display: none;
+}
+
+.exp-node {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.exp-node-dot {
   width: 16px;
   height: 16px;
-  right: -8px;
-  background-color: var(--bg-dark);
-  border: 3px solid var(--color-sky);
-  top: 1.5rem;
   border-radius: 50%;
-  z-index: 1;
-  box-shadow: var(--shadow-glow);
-  transition: var(--transition);
+  background: var(--bg-dark);
+  border: 3px solid rgba(56, 189, 248, 0.4);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 rgba(56, 189, 248, 0);
 }
 
-.timeline-item:hover::after {
-  background-color: var(--color-peacock-light);
+.exp-node-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.exp-node.active .exp-node-dot {
+  background: var(--color-sky);
   border-color: #ffffff;
-  transform: scale(1.3);
+  transform: scale(1.2);
+  box-shadow: 0 0 12px var(--color-sky);
 }
 
-.timeline-left {
+.exp-node.active .exp-node-label {
+  color: var(--color-sky);
+  transform: translateY(-2px);
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+}
+
+.exp-node:hover:not(.active) .exp-node-dot {
+  border-color: var(--color-peacock-light);
+  transform: scale(1.1);
+}
+
+.exp-node:hover:not(.active) .exp-node-label {
+  color: var(--color-peacock-light);
+}
+
+/* Sliding Experience Cards */
+.exp-cards-wrapper {
+  position: relative;
+  min-height: 380px;
+  margin-bottom: 2rem;
+}
+
+.exp-slide {
+  position: absolute;
+  top: 0;
   left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 1;
 }
 
-.timeline-right {
-  left: 50%;
+.exp-slide.active {
+  position: relative; /* allow height to stretch automatically */
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  z-index: 2;
 }
 
-.timeline-right::after {
-  left: -8px;
+.exp-card {
+  padding: 2.5rem;
+  border-radius: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exp-card:hover {
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(56, 189, 248, 0.08);
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.exp-title-group h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.exp-title-group h4 {
+  font-size: 1rem;
+  color: var(--color-sky);
+  font-weight: 500;
 }
 
 .timeline-date {
@@ -923,34 +1019,116 @@ nav a:hover::after, nav a.active::after {
   border: 1px solid rgba(45, 212, 191, 0.2);
 }
 
-.timeline-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.25rem;
+.exp-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
 
-.timeline-card h4 {
-  font-size: 0.95rem;
+.exp-info p {
+  line-height: 1.6;
   color: var(--text-muted);
-  margin-bottom: 1rem;
 }
 
-.timeline-card ul {
-  list-style: none;
-}
-
-.timeline-card li {
-  position: relative;
-  padding-left: 1.25rem;
-  margin-bottom: 0.75rem;
+.exp-tags-container h5 {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.timeline-card li::before {
-  content: "✦";
+.exp-scrollable-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Custom Scrollbar for Tags list */
+.exp-scrollable-tags::-webkit-scrollbar {
+  width: 4px;
+}
+.exp-scrollable-tags::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+}
+.exp-scrollable-tags::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.2);
+  border-radius: 4px;
+}
+.exp-scrollable-tags::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.4);
+}
+
+/* Slider Controls */
+.exp-nav-btn {
   position: absolute;
-  left: 0;
-  color: var(--color-sky);
+  top: 55%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(7, 10, 19, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.exp-nav-btn:hover {
+  background: var(--color-sky);
+  color: #ffffff;
+  border-color: var(--color-sky);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+.exp-nav-btn.prev {
+  left: -60px;
+}
+
+.exp-nav-btn.next {
+  right: -60px;
+}
+
+@media (max-width: 1100px) {
+  .exp-nav-btn.prev {
+    left: -15px;
+  }
+  .exp-nav-btn.next {
+    right: -15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .exp-body {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .exp-header {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .exp-nav-btn {
+    display: none; /* Swipe/drag or dots/axis nodes is enough on mobile */
+  }
+  .exp-card {
+    padding: 1.5rem;
+  }
+  .exp-cards-wrapper {
+    min-height: auto;
+  }
+  .exp-scrollable-tags {
+    max-height: 150px;
+  }
 }
 
 /* Skills Categories layout */
@@ -1232,20 +1410,7 @@ footer a:hover {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  .timeline::after {
-    left: 31px;
-  }
-  .timeline-item {
-    width: 100%;
-    padding-left: 5rem;
-    padding-right: 1.5rem;
-  }
-  .timeline-left, .timeline-right {
-    left: 0;
-  }
-  .timeline-item::after {
-    left: 23px;
-  }
+
 }
 
 @media (max-width: 768px) {
@@ -1567,7 +1732,7 @@ footer a:hover {
   margin-top: 4.5rem; /* sits right below the header */
   position: relative;
   width: 100%;
-  height: 420px;
+  height: 260px;
   background: var(--bg-dark);
   overflow: hidden;
   border-bottom: 1px solid rgba(56, 189, 248, 0.12);
@@ -1637,7 +1802,7 @@ footer a:hover {
   );
   display: flex;
   align-items: flex-end;
-  padding-bottom: 3.5rem;
+  padding-bottom: 2rem;
 }
 
 .slide-content {
@@ -1662,29 +1827,29 @@ footer a:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--color-sky);
   background: rgba(56, 189, 248, 0.12);
   border: 1px solid rgba(56, 189, 248, 0.3);
-  padding: 0.35rem 0.8rem;
+  padding: 0.25rem 0.6rem;
   border-radius: 50px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .slide-badge i {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
 }
 
 .slide-title {
   font-family: var(--font-heading);
-  font-size: 2.25rem;
+  font-size: 1.6rem;
   font-weight: 800;
   line-height: 1.2;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, var(--color-sky) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1692,9 +1857,9 @@ footer a:hover {
 }
 
 .slide-desc {
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.4;
   margin-bottom: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
@@ -1704,8 +1869,8 @@ footer a:hover {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: rgba(13, 20, 38, 0.4);
   backdrop-filter: blur(8px);
@@ -1784,40 +1949,44 @@ footer a:hover {
 /* Responsiveness for Slider */
 @media (max-width: 1024px) {
   .hero-slider-container {
-    height: 350px;
+    height: 220px;
   }
   .slide-title {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
   }
   .slide-desc {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 768px) {
   .hero-slider-container {
-    height: 280px;
+    height: 180px;
   }
   .slide-content-overlay {
     background: linear-gradient(
       0deg,
-      rgba(7, 10, 19, 0.85) 0%,
-      rgba(7, 10, 19, 0.3) 60%,
+      rgba(7, 10, 19, 0.9) 0%,
+      rgba(7, 10, 19, 0.4) 65%,
       transparent 100%
     );
     align-items: flex-end;
-    padding-bottom: 3rem;
+    padding-bottom: 1.5rem;
   }
   .slide-content {
     max-width: 100%;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
   .slide-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
   }
   .slide-desc {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .slider-nav-btn {
     display: none; /* Hide arrows on mobile */
